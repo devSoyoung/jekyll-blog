@@ -3,10 +3,10 @@
   <channel>
     <title></title>
     <description>프론트엔드 개발과 귀여운 것에 관심이 많습니다.</description>
-    <link>http://devsoyoung.github.io//</link>
-    <atom:link href="http://devsoyoung.github.io//feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 05 May 2019 14:31:33 +0900</pubDate>
-    <lastBuildDate>Sun, 05 May 2019 14:31:33 +0900</lastBuildDate>
+    <link>http://localhost:4000//</link>
+    <atom:link href="http://localhost:4000//feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sun, 05 May 2019 15:07:22 +0900</pubDate>
+    <lastBuildDate>Sun, 05 May 2019 15:07:22 +0900</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -276,11 +276,483 @@ style-loader의 역할을 수행하지만, 플러그인이기 때문에 &lt;stro
 &lt;/ul&gt;
 </description>
         <pubDate>Sat, 04 May 2019 00:00:00 +0900</pubDate>
-        <link>http://devsoyoung.github.io//fe/2019/05/04/webpack-introduce.html</link>
-        <guid isPermaLink="true">http://devsoyoung.github.io//fe/2019/05/04/webpack-introduce.html</guid>
+        <link>http://localhost:4000//fe/2019/05/04/webpack-introduce.html</link>
+        <guid isPermaLink="true">http://localhost:4000//fe/2019/05/04/webpack-introduce.html</guid>
         
         
         <category>FE</category>
+        
+      </item>
+    
+      <item>
+        <title>오늘부터 나도 FE 성능분석가</title>
+        <description>&lt;p&gt;2019년 4월 11일, 네이버 프론트엔드 테크콘서트에서 진행되었던 &lt;a href=&quot;https://www.slideshare.net/NaverEngineering/naver-tech-concertfe2019-fe&quot;&gt;오늘부터 나도 FE 성능분석가&lt;/a&gt; 세미나를 듣고 내용을 정리한 글입니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;web-성능분석-지표&quot;&gt;WEB 성능분석 지표&lt;/h2&gt;
+&lt;h3 id=&quot;tpstransition-per-second&quot;&gt;TPS(Transition Per Second)&lt;/h3&gt;
+&lt;p&gt;서버가 얼마나 많은 요청을 처리할 수 있는지를 나타내는 지표&lt;/p&gt;
+&lt;h3 id=&quot;lailoading-and-interaction&quot;&gt;LAI(Loading And Interaction)&lt;/h3&gt;
+&lt;p&gt;사용자 입력에 얼마나 빠르게 반응하는지를 나타내는 지표&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;초기 로딩 속도&lt;/strong&gt; : 얼마나 빨리 페이지를 볼 수 있는지&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;인터렉션 속도&lt;/strong&gt; : 동작이나 애니메이션의 매끄러운 정도&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;fe-성능개선-작업-plan&quot;&gt;FE 성능개선 작업 PLAN&lt;/h2&gt;
+&lt;h3 id=&quot;대상-선정하기--숲을-보자&quot;&gt;대상 선정하기 : 숲을 보자&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;서비스에서 가장 많이 사용하는 화면은 무엇인가&lt;/li&gt;
+  &lt;li&gt;서비스에서 사용자에게 가치 있는 화면은 무엇인가&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;개선-프로세스&quot;&gt;개선 프로세스&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;측정(Measure)&lt;/li&gt;
+  &lt;li&gt;분석(Analytic)&lt;/li&gt;
+  &lt;li&gt;최적화(Optimize)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;언제까지&quot;&gt;언제까지?&lt;/h3&gt;
+&lt;p&gt;목표에 도달할 때까지&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;목표&lt;/strong&gt; : 초기 로딩 속도&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;네이버의 초기 로딩 속도&lt;/strong&gt; : 모바일 1.5초, PC 2초&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;구글의 초기 로딩 속도&lt;/strong&gt; : 사용자에게 꼭 보여주어야 하는 부분 기준 FMP&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;성능-개선-작업---part-1--초기-로딩-속도-개선하기&quot;&gt;성능 개선 작업 - Part 1 : 초기 로딩 속도 개선하기&lt;/h2&gt;
+&lt;h3 id=&quot;페이지-로딩-과정&quot;&gt;페이지 로딩 과정&lt;/h3&gt;
+&lt;p&gt;서버로부터 HTML 파일을 받고, 파일에 첨부된 script, link, img 태그 등을 요청해서 받아옴&lt;/p&gt;
+
+&lt;h3 id=&quot;로딩-속도-측정분석하기&quot;&gt;로딩 속도 측정/분석하기&lt;/h3&gt;
+&lt;p&gt;waterfall 차트의 &lt;strong&gt;높이&lt;/strong&gt;를 줄이고, &lt;strong&gt;폭&lt;/strong&gt;을 줄이고, &lt;strong&gt;간격&lt;/strong&gt;을 당긴 후 총 점검하기&lt;/p&gt;
+
+&lt;h4 id=&quot;높이-줄이기--request-수-줄이기&quot;&gt;&lt;strong&gt;높이 줄이기&lt;/strong&gt; : Request 수 줄이기&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/42922453/56368481-7a39b580-6232-11e9-8e83-2c439b340d50.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;JS, CSS Merge : JS, CSS를 합쳐서 하나의 파일로 만듦&lt;/li&gt;
+  &lt;li&gt;CSS Sprite : 여러 이미지를 하나의 Sprite 이미지로 만듦&lt;/li&gt;
+  &lt;li&gt;DATA URI : 캐싱되지 않아도 될 이미지를 HTML 요청에 포함&lt;/li&gt;
+  &lt;li&gt;Lazy : 초기 로딩 시 불필요한 자원은 삭제하거나, 나중에 요청
+    &lt;ul&gt;
+      &lt;li&gt;실수로 요청한 자원&lt;/li&gt;
+      &lt;li&gt;초기 로딩 시 불필요한 JS : &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;script&amp;gt;&lt;/code&gt; 태그 동적 삽입&lt;/li&gt;
+      &lt;li&gt;뷰 포트 바깥에 있는 이미지 : carousel 같은 경우&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;이미지가 전체 요청 용량의 절반 이상을 차지하므로 이 부분을 개선하는 것이 가장 효과적&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;브라우저는 호스트당 &lt;strong&gt;동시 연결 가능한 개수&lt;/strong&gt;가 정해져 있음&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;요청 수가 많은 경우 : 가능한 connection 수를 초과해서 대기 발생&lt;/li&gt;
+  &lt;li&gt;요청을 줄일수록 좋음&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;폭-줄이기--request-시간-줄이기&quot;&gt;&lt;strong&gt;폭 줄이기&lt;/strong&gt; : Request 시간 줄이기&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/42922453/56368550-a0f7ec00-6232-11e9-9d8f-e9734ec6cef7.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;HTTP 프로토콜마다 Connection 활용 방법이 다름&lt;/li&gt;
+  &lt;li&gt;HTTP2를 사용하자&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;TTFB(Time to First Byte)&lt;/strong&gt; : 오래 걸리면 서버 비즈니스 로직이 느린 것&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Content Download&lt;/strong&gt;가 오래 걸릴 때 : 네트워크 속도가 낮거나 컨텐츠 크기가 큰 경우
+d ㅋㅌ* minify(주석제거, 공백제거), obfuscation(변수명 변경), gzip(컨텐츠 인코딩)
+    &lt;ul&gt;
+      &lt;li&gt;큰 이미지 줄이기, 이미지 메타정보 날리기&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;이미지가 클수록 Decode(이미지 데이터를 RGB로 변환하는 과정) 비용이 많이 듬&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;디자이너는 레티나(device-ratio: 2) 이상급 이미지를 원한다&lt;/li&gt;
+  &lt;li&gt;요즘 브라우저는 다 레티나 이상이므로, 보이는 크기의 2배 정도의 이미지 크기로 하자&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;간격-당기기--request-계단-간격-당기기&quot;&gt;&lt;strong&gt;간격 당기기&lt;/strong&gt; : Request 계단 간격 당기기&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/42922453/56368921-588cfe00-6233-11e9-9fdc-41453f02c972.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;서버로부터 HTML 문자열을 Stream으로 받음&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;head&amp;gt;&lt;/code&gt; 태그에 포함된 자원을 병렬로 다운로드&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;head&amp;gt;&lt;/code&gt; 태그에 포함된 자원을 모두 실행&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;body&amp;gt;&lt;/code&gt; 태그부터 화면을 그리기 시작&lt;/li&gt;
+  &lt;li&gt;DOM 구성이 완료되면 DOMContentLoaded 이벤트 발생&lt;/li&gt;
+  &lt;li&gt;모든 자원의 로딩 완료되면 load 이벤트 발생&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Document Load : DOM 구성 완료 시점&lt;/li&gt;
+  &lt;li&gt;Window Load : 모든 자원의 로딩 완료 시점&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- A --&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+         &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&amp;gt;&lt;/span&gt;Hello world (1) &lt;span class=&quot;nt&quot;&gt;&amp;lt;img&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;world1.png&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+         &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- B --&amp;gt;&lt;/span&gt;
+         &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&amp;gt;&lt;/span&gt;Hello world (2) &lt;span class=&quot;nt&quot;&gt;&amp;lt;img&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;world2.png&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+         &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&amp;gt;&lt;/span&gt;Hello world (3) &lt;span class=&quot;nt&quot;&gt;&amp;lt;img&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;world3.png&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+         &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&amp;gt;&lt;/span&gt;Hello world (4) &lt;span class=&quot;nt&quot;&gt;&amp;lt;img&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;world4.png&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+         &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- C --&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;A : &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;head&amp;gt;&lt;/code&gt;안의 모든 자원을 병렬로 로딩&lt;/li&gt;
+  &lt;li&gt;B : 자바스크립트나 CSS 파일 실행 시 렌더링이 block됨&lt;/li&gt;
+  &lt;li&gt;C : DOM은 다 그려졌으나, 이미지는 아직 로딩되지 않음&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Frontend 성능 격언&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;head 태그에는 CSS와 필수 JS만 넣어라&lt;/li&gt;
+  &lt;li&gt;JS는 body 태그 마지막에 넣어라&lt;/li&gt;
+  &lt;li&gt;HTML 파일 중간중간에 JS를 넣지 마라&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;async, defer 속성을 활용
+    &lt;ul&gt;
+      &lt;li&gt;defer : DOM 제어와 관련이 있는 스크립트&lt;/li&gt;
+      &lt;li&gt;async : 의존성이 없는 스크립트&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;CSS 파일에서 폰트, 이미지를 사용할 때, &lt;strong&gt;preload&lt;/strong&gt;를 사용하면 CSS와 함께 로딩됨&lt;/li&gt;
+  &lt;li&gt;HTTP2 Server Push : HTML과 함께 JS, CSS, 이미지가 로딩됨&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;총체적으로-점검하기&quot;&gt;총체적으로 점검하기&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/42922453/56369671-c128aa80-6234-11e9-8de1-44fe3a8cdd28.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;체감 속도 높이기
+    &lt;ul&gt;
+      &lt;li&gt;FP(First Paint) : HEAD 태그 종료 후&lt;/li&gt;
+      &lt;li&gt;FMP(First Meaningful Paint) : Hero 엘리먼트가 보이는 시기&lt;/li&gt;
+      &lt;li&gt;Hero 엘리먼트가 무엇인지, Lazy하게 처리하면 안되는 요소가 무엇인지 고려하기&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;균형감 찾기
+    &lt;ul&gt;
+      &lt;li&gt;각각의 Request를 균등한 크기로 만들기&lt;/li&gt;
+      &lt;li&gt;지나치게 큰 CSS나 JS가 없도록&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        <pubDate>Sat, 13 Apr 2019 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000//review/2019/04/13/naver-tech-concert-review-4.html</link>
+        <guid isPermaLink="true">http://localhost:4000//review/2019/04/13/naver-tech-concert-review-4.html</guid>
+        
+        
+        <category>Review</category>
+        
+      </item>
+    
+      <item>
+        <title>빠르게 훑어보는 웹 개발 트렌드</title>
+        <description>&lt;p&gt;2019년 4월 11일, 네이버 프론트엔드 테크콘서트에서 진행되었던 &lt;a href=&quot;https://www.slideshare.net/NaverEngineering/naver-tech-concertfe2019&quot;&gt;빠르게 훑어보는 웹 개발 트렌드&lt;/a&gt; 세미나를 듣고 내용을 정리한 글입니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;웹-개발-트렌드&quot;&gt;웹 개발 트렌드&lt;/h2&gt;
+&lt;h3 id=&quot;서버-중심으로-개발&quot;&gt;서버 중심으로 개발&lt;/h3&gt;
+&lt;p&gt;미리 만들어두거나 서버에서 만든 페이지를 제공&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/42922453/55972502-91baf080-5cbe-11e9-8fab-d57e27afda4c.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;사용자가 요청한 화면을 서버에서 페이지 단위로 생성해서 제공&lt;/li&gt;
+  &lt;li&gt;Java Applet, Java Servlet, PHP ..&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;클라이언트-중심으로-개발&quot;&gt;클라이언트 중심으로 개발&lt;/h3&gt;
+&lt;p&gt;페이지를 부분적으로 갱신, 서버는 API 역할에 집중&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/42922453/55972659-e8282f00-5cbe-11e9-95ac-86db2138cdba.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;일단 클라이언트를 준비하고, 추가로 필요한 데이터를 클라이언트가 주도적으로 요청&lt;/li&gt;
+  &lt;li&gt;이미 화면에 떠있는 페이지에 요청한 데이터를 추가&lt;/li&gt;
+  &lt;li&gt;DOM에 적극적으로 개입&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;요청&lt;/strong&gt; - Ajax, &lt;strong&gt;DOM 조작&lt;/strong&gt; - jQuery&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;고도화&quot;&gt;고도화&lt;/h3&gt;
+&lt;p&gt;프론트엔드 로직이 복잡해지면서 다양한 라이브러리를 적극 활용&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/42922453/55972830-39382300-5cbf-11e9-8885-8c132f1f87fa.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;요즘-웹-개발&quot;&gt;요즘 웹 개발&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;주의 : 모든 프로젝트에 해당하는 것은 아님, 트렌드가 향하는 방향일 뿐&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Angular, Vue.js, React.js 등 다양한 프레임워크나 라이브러리 활용&lt;/li&gt;
+  &lt;li&gt;Component 기반 개발&lt;/li&gt;
+  &lt;li&gt;Task Runner, CLI 사용&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;공부하면-좋은-것들&quot;&gt;공부하면 좋은 것들&lt;/h2&gt;
+&lt;h3 id=&quot;기본-지식&quot;&gt;기본 지식&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;레이아웃 구성&lt;/strong&gt; : HTML, HTML5&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;스타일 지정&lt;/strong&gt; : CSS, CSS3, flex/grid model, 스타일 라이브러리, 전처리기&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;반응, 로직 처리&lt;/strong&gt; : JavaScript, ES6, TypeScript, 프레임워크&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;그-외&quot;&gt;그 외&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;개발 툴 : git, github&lt;/li&gt;
+  &lt;li&gt;UI/UX, 디자인 시스템&lt;/li&gt;
+  &lt;li&gt;데이터 시각화&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;정리&quot;&gt;정리&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;프론트엔드 개발 트렌드는 빠르게 변하므로 계속 공부해야 함&lt;/li&gt;
+  &lt;li&gt;Full-stack : 물리적인 한계가 존재하므로 선택과 집중을 하는 것이 효율적일 수 있음&lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+        <pubDate>Fri, 12 Apr 2019 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000//review/2019/04/12/naver-tech-concert-review-3.html</link>
+        <guid isPermaLink="true">http://localhost:4000//review/2019/04/12/naver-tech-concert-review-3.html</guid>
+        
+        
+        <category>Review</category>
+        
+      </item>
+    
+      <item>
+        <title>데이터 상태 관리, 그것을 알려주마!</title>
+        <description>&lt;p&gt;2019년 4월 11일, 네이버 프론트엔드 테크콘서트에서 진행되었던 &lt;a href=&quot;https://www.slideshare.net/NaverEngineering/naver-tech-concertfe2019-140432157&quot;&gt;데이터 상태 관리, 그것을 알려주마!&lt;/a&gt; 세미나를 듣고 내용을 정리한 글입니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;fe에서의-상태관리&quot;&gt;FE에서의 상태관리&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;상태는 각 뷰에서, 때로는 뷰와 상관없이 필요에 의해서 실시간, 비동기로 계속 변화&lt;/li&gt;
+  &lt;li&gt;상태가 언제, 어떻게, 왜 변화했는지 제어할 수 없는 상황에 이르게 됨&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;jquery와-상태관리&quot;&gt;jQuery와 상태관리&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;마크업(HTML)에 jQuery를 바른다 : HTML이 메인&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;메인에 상태를 저장&lt;/strong&gt; : HTML 태그 내에 상태를 저장함&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/42922453/55947890-53a3d980-5c8a-11e9-9334-4ce0f29201f6.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;여러 element에 저장된 정보를 조합해서 동작을 수행하고 싶을 때
+      1. 필요한 element를 선택해서 상태를 가져옴
+      2. 상태를 가져와서 작업을 한 후 동작(ajax 요청)을 수행&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;문제&lt;/strong&gt; : 동작을 수행하는 과정에서 가져온 상태가 변경될 수 있음&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;jquery-상태-관리-정리&quot;&gt;jQuery 상태 관리 정리&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;jQuery 개발은 DOM에 jQuery로 동작을 입히는 것&lt;/li&gt;
+  &lt;li&gt;DOM이 베이스(메인)&lt;/li&gt;
+  &lt;li&gt;각 element에 상태를 저장&lt;/li&gt;
+  &lt;li&gt;서로 다른 element의 상태변화 추적이 어려움&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;angularjs-상태관리&quot;&gt;AngularJS 상태관리&lt;/h2&gt;
+&lt;p&gt;출력할 데이터에 초점을 맞추어 작업이 수행되며, 데이터 값이 변경되면 출력도 자동적으로 수행&lt;/p&gt;
+
+&lt;h3 id=&quot;angularjs의-기본-개념&quot;&gt;AngularJS의 기본 개념&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;모듈&lt;/strong&gt;이라는 개념을 사용(컴포넌트와 비슷한 개념)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;컨트롤러&lt;/strong&gt;라는 지시자를 이용하여 마크업 상에 영역을 생성&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;ng-controller=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;MyController&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    Your name: &lt;span class=&quot;nt&quot;&gt;&amp;lt;input&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;ng-model=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;username&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;button&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;ng-click=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;sayHello()&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;greet&lt;span class=&quot;nt&quot;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
+    
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;angular&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'scopeExample'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[])&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;controller&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'MyController'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'$scope'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;$scope&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;$scope&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;username&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'world'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;$scope&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;sayHello&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;nx&quot;&gt;$scope&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;greeting&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Hello'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;$scope&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;username&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'!'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;DOM에 접근하여 값(상태)를 변경시키는 코드가 없어도 뷰가 변경됨&lt;/li&gt;
+  &lt;li&gt;개발자는 &lt;code class=&quot;highlighter-rouge&quot;&gt;$scope.greeting&lt;/code&gt; 값만 변경하면 됨&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;angularjs의-구조&quot;&gt;AngularJS의 구조&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;서비스, 컨트롤러, 뷰로 구성&lt;/li&gt;
+  &lt;li&gt;각 컨트롤러는 로직과 state를 가지며, 공통 로직과 state는 서비스에서 관리&lt;/li&gt;
+  &lt;li&gt;컨트롤러의 정보를 통해 뷰를 그림&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;문제&lt;/strong&gt; : 상태(데이터)를 언제, 왜, 어떻게 변했는지 알기 어려움&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;redux의-상태관리&quot;&gt;Redux의 상태관리&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/42922453/55971839-376d6000-5cbd-11e9-8406-ad2ad9219087.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;상태관리를 컴포넌트 바깥에서 하고, 컴포넌트들은 스토어를 구독해서 변화를 감지&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;FLUX&lt;/li&gt;
+  &lt;li&gt;CQRS&lt;/li&gt;
+  &lt;li&gt;Event Sourcing&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;redux의-문제점&quot;&gt;Redux의 문제점&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;많은 보일러 플레이트 : 초기에 여러 가지 설정이 필요&lt;/li&gt;
+  &lt;li&gt;어렵고 (경우에 따라서) 과한 기술이 될 수 있음&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;결론&lt;/strong&gt; : 상황에 맞게, 적절하게 사용하자&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+&lt;h2 id=&quot;정리&quot;&gt;정리&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;FE 앱은 상태(데이터)들의 유기체&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;상태 관리 이슈&lt;/strong&gt; : DOM 변화, 비동기 동작 간의 개념 충돌 등&lt;/li&gt;
+  &lt;li&gt;상태 관리에 대한 다양한 접근법이 제시되었고, DOM 중심에서 상태 중심으로 관점이 옮겨지는 추세&lt;/li&gt;
+  &lt;li&gt;관점의 변화가 필요하고, 이에 따른 개발 방식도 변화 필요&lt;/li&gt;
+  &lt;li&gt;현재는 레거시(jQuery)와 Angular, Redux 등이 혼재하기 때문에 다 아는 것이 좋음&lt;/li&gt;
+  &lt;li&gt;프로젝트에 따라 최적의 기술이 다를 수 있으므로 상황을 잘 고려하는 것이 중요&lt;/li&gt;
+  &lt;li&gt;어떤 상태 관리 방법을 사용하는가에 따라 전체 구조를 결정하므로 프로젝트 시작 전에 고려&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Fri, 12 Apr 2019 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000//review/2019/04/12/naver-tech-concert-review-2.html</link>
+        <guid isPermaLink="true">http://localhost:4000//review/2019/04/12/naver-tech-concert-review-2.html</guid>
+        
+        
+        <category>Review</category>
+        
+      </item>
+    
+      <item>
+        <title>플랫폼 UI 개발 전략의 모든 것</title>
+        <description>&lt;p&gt;2019년 4월 11일, 네이버 프론트엔드 테크콘서트에서 진행되었던 &lt;a href=&quot;https://www.slideshare.net/NaverEngineering/naver-tech-concertfe2019-ui&quot;&gt;플랫폼 UI 개발 전략의 모든 것&lt;/a&gt; 세미나를 듣고 내용을 정리한 글입니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;플랫폼이란&quot;&gt;플랫폼이란&lt;/h2&gt;
+&lt;p&gt;공통의 활용 요소를 바탕으로 보완적인 파생 상품, 서비스를 개발할 수 있는 기반&lt;/p&gt;
+
+&lt;h2 id=&quot;기존-설계의-문제점&quot;&gt;기존 설계의 문제점&lt;/h2&gt;
+&lt;p&gt;(스마트 에디터 3.0 사례)&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;에디터를 사용하는 서비스마다 디자인/요구사항이 조금씩 다름&lt;/li&gt;
+  &lt;li&gt;컴포넌트 사이의 간격이 매우 다양함 : 이미지, 이미지 설명, 인용구 등&lt;/li&gt;
+  &lt;li&gt;UI 개발 전략이 없었음&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;플랫폼을-고려하지-않은-ui-개발&quot;&gt;플랫폼을 고려하지 않은 UI 개발&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;커스텀, 확장에 대한 고려가 없음 : 서비스 요구사항을 수용하기 어려움&lt;/li&gt;
+  &lt;li&gt;플랫폼 CSS, 서비스 CSS의 간섭이 발생, 우선 순위 관리 어려움&lt;/li&gt;
+  &lt;li&gt;에디터 UI 요소간 관계 파악이 어려워 버그, 사이드 이펙트 발생&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;(다소 다른 맥락이긴 하지만) 확장앱을 개발하면서 삽입하는 CSS, 기존 CSS 우선 순위 관리가 어려워서 공감되었습니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;새로운-설계-방향&quot;&gt;새로운 설계 방향&lt;/h2&gt;
+&lt;p&gt;스마트에디터 원 : 플랫폼이 갖춰야 할 조건 고려&lt;/p&gt;
+
+&lt;h3 id=&quot;플랫폼-ui-설계에서-중요한-것&quot;&gt;플랫폼 UI 설계에서 중요한 것&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;UI 공통화 : 디자인 중심이 아닌 기능 중심&lt;/li&gt;
+  &lt;li&gt;조건과 상태에 따라 다른 스타일 적용&lt;/li&gt;
+  &lt;li&gt;각기 다른 요구사항을 쉽고 빠르게 적용&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;동적인-ui-스타일-로직&quot;&gt;동적인 UI 스타일 로직&lt;/h2&gt;
+&lt;p&gt;컴포넌트 간격과 연관된 UI 스펙 분석과 구현&lt;/p&gt;
+
+&lt;h3 id=&quot;스펙-분석&quot;&gt;스펙 분석&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;인접한 컴포넌트에 따라 간격이 달라질 수 있음
+    &lt;ul&gt;
+      &lt;li&gt;제목, 이미지, 이미지 위에 인용구가 있을 때, 이미지 위에 이미지가 있을 때 등&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;간격과 같은 높이의 숨겨진 UI(텍스트 추가 버튼)가 필요
+    &lt;ul&gt;
+      &lt;li&gt;공백 영역(숨겨진 영역)을 클릭하면 새로운 컨텐츠를 삽입할 수 있는 영역이 나옴&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;스마트 에디터 3.0을 많이 사용했었는데, 개발자분들의 노력을 직접 확인하니 새삼 감사했습니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;플랫폼-관점에서-설계-포인트&quot;&gt;플랫폼 관점에서 설계 포인트&lt;/h3&gt;
+&lt;p&gt;컴포넌트 사이 간격은 서비스별로 요구사항이 다를 수 있음&lt;/p&gt;
+
+&lt;h3 id=&quot;구현&quot;&gt;구현&lt;/h3&gt;
+&lt;p&gt;SCSS를 사용하여 설정 부분을 따로 빼내면, 서비스에 따라 쉽게 수정이 가능&lt;/p&gt;
+&lt;div class=&quot;language-scss highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;component-edge-button&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;spacing&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;base&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;30px&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;adjacent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;15px&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;nb&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;20px&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;spacing-and-hidden-button-style&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;플랫폼-ui-설계-전략&quot;&gt;플랫폼 UI 설계 전략&lt;/h2&gt;
+&lt;h3 id=&quot;모듈화&quot;&gt;모듈화&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;디자인보다는 각 요소가 하는 기능에 집중하여 모듈화&lt;/li&gt;
+  &lt;li&gt;현재 요구사항에 맞게 최소한의 기능으로 모듈화하고, 확장 가능성은 배제
+    &lt;ul&gt;
+      &lt;li&gt;확장 가능성을 초기부터 고려하면 복잡해질 수 있음&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;같은 기능을 사용하는 요소는 동일한 HTML 구조를 사용&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;설정과-공통-코드&quot;&gt;설정과 공통 코드&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;간격, 색상, 서체, 폰트 사이즈 등 서비스 별 변경이 쉽도록 설정으로 관리&lt;/li&gt;
+  &lt;li&gt;반복적인 코드는 css pre-processor의 기능을 활용하여 구현&lt;/li&gt;
+  &lt;li&gt;연관된 UI, 수치는 반드시 공통으로 묶어 관계를 명확하게 함&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;플랫폼은-만능이-아님&quot;&gt;플랫폼은 만능이 아님&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;모든 요구사항을 플랫폼 공통 코드로 소화할 수 없음&lt;/li&gt;
+  &lt;li&gt;때로는 스펙 협의, 커뮤니케이션이 설계보다 중요할 수 있음&lt;/li&gt;
+  &lt;li&gt;플랫폼 공통 코드는 불변이 아니며, 지속적 리팩토링이 필요&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Fri, 12 Apr 2019 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000//review/2019/04/12/naver-tech-concert-review-1.html</link>
+        <guid isPermaLink="true">http://localhost:4000//review/2019/04/12/naver-tech-concert-review-1.html</guid>
+        
+        
+        <category>Review</category>
         
       </item>
     
