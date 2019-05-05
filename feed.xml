@@ -5,8 +5,8 @@
     <description>프론트엔드 개발과 귀여운 것에 관심이 많습니다.</description>
     <link>http://devsoyoung.github.io//</link>
     <atom:link href="http://devsoyoung.github.io//feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 05 May 2019 15:17:50 +0900</pubDate>
-    <lastBuildDate>Sun, 05 May 2019 15:17:50 +0900</lastBuildDate>
+    <pubDate>Sun, 05 May 2019 15:50:05 +0900</pubDate>
+    <lastBuildDate>Sun, 05 May 2019 15:50:05 +0900</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -753,6 +753,397 @@ d ㅋㅌ* minify(주석제거, 공백제거), obfuscation(변수명 변경), gzi
         
         
         <category>Review</category>
+        
+      </item>
+    
+      <item>
+        <title>[JS] Timer 함수: setTimeout, setInterval</title>
+        <description>&lt;p&gt;Javascript의 Timer 관련 함수인 setTimeout, setInterval에 대해 정리한 글입니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;타이머-함수의-활용&quot;&gt;타이머 함수의 활용&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;특정 함수나 기능을 바로 실행하지 않고, 약간의 시간이 지난 후에 실행하고 싶을 때
+    &lt;ul&gt;
+      &lt;li&gt;어떤 정보를 표시한 후, 몇 초 뒤에 다른 페이지로 이동&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;특정 함수를 지속적으로 반복 실행하고 싶을 때
+    &lt;ul&gt;
+      &lt;li&gt;특정 시간마다 화면을 갱신하기 위해서 서버에 새로운 정보를 요청&lt;/li&gt;
+      &lt;li&gt;남은 로그인 유지 시간 표시&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;setinterval&quot;&gt;setInterval&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;setInterval(fn, delay);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;일정시간 &lt;strong&gt;마다&lt;/strong&gt; 함수를 실행&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;setInterval&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;				&lt;span class=&quot;c1&quot;&gt;// 1초마다 출력&lt;/span&gt;
+	&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'setInterval'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;setInterval&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'setInterval'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;		&lt;span class=&quot;c1&quot;&gt;// 1번만 출력&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;주의할 점은 &lt;strong&gt;함수 안의 내용을 반복적으로 수행&lt;/strong&gt;하는 것(함수 자체를 반복해주지 않음)&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;setInterval은 &lt;code class=&quot;highlighter-rouge&quot;&gt;timerId&lt;/code&gt;를 반환하므로, 이를 활용해서 clearInterval로 반복을 멈출 수 있음&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;clearinterval로-반복-취소하기&quot;&gt;clearInterval로 반복 취소하기&lt;/h3&gt;
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;timerId&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;setInterval&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;c1&quot;&gt;// 반복할 내용&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;정지할&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;조건&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;clearInterval&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;timerId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;settimeout&quot;&gt;setTimeout&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;setTimeout(fn, delay);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;일정시간 &lt;strong&gt;후&lt;/strong&gt; 함수를 한 번만 실행&lt;/p&gt;
+
+&lt;h2 id=&quot;활용&quot;&gt;활용&lt;/h2&gt;
+&lt;h3 id=&quot;settimeout-setinterval-동시에-활용하기&quot;&gt;setTimeout, setInterval 동시에 활용하기&lt;/h3&gt;
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;intervalId&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;setInterval&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;c1&quot;&gt;// 수행할 내용&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;setTimeout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;nx&quot;&gt;clearInterval&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;invervalId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;50000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;setInterval로 반복실행하다가 정해진 시간 후에 clearInterval을 실행(setTimeout)해서 반복을 중지시킴&lt;/p&gt;
+</description>
+        <pubDate>Tue, 26 Mar 2019 00:00:00 +0900</pubDate>
+        <link>http://devsoyoung.github.io//javascript/2019/03/26/js-timer.html</link>
+        <guid isPermaLink="true">http://devsoyoung.github.io//javascript/2019/03/26/js-timer.html</guid>
+        
+        
+        <category>Javascript</category>
+        
+      </item>
+    
+      <item>
+        <title>[JS] HTMLCollection과 NodeList의 공통점, 차이점</title>
+        <description>&lt;p&gt;Javascript의 Element Collection인 HTMLCollection과 NodeList의 공통점, 차이점을 정리한 글입니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;공통점과-차이점-요약&quot;&gt;공통점과 차이점 요약&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;공통점&lt;/strong&gt; : DOM nodes의 모음&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;차이점&lt;/strong&gt; : 제공하는 메소드, 포함하고 있는 돔 노드의 타입이 다름
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;NodeList&lt;/code&gt; : 모든 타입의 노드를 다 가질 수 있지만&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;HTMLCollection&lt;/code&gt; : element 노드만 가질 수 있음&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;htmlcollection&quot;&gt;&lt;a href=&quot;https://developer.mozilla.org/ko/docs/Web/API/HTMLCollection&quot;&gt;HTMLCollection&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;요소(elements)의 일반적인 모음을 나타냄(유사배열)&lt;/p&gt;
+&lt;h3 id=&quot;속성&quot;&gt;속성&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;.length&lt;/code&gt; : 컬렉션 항목의 갯수를 반환&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;.[이름명]&lt;/code&gt; : 노드 목록 중 해당 이름을 가진 요소를 바로 참조할 수 있음(&lt;code class=&quot;highlighter-rouge&quot;&gt;-&lt;/code&gt;가 이름 중간에 있는 경우는 불가능)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;메서드&quot;&gt;메서드&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;.item()&lt;/code&gt; : 파라미터로 받은 인덱스의 노드를 반환하며, 범위를 벗어난 인덱스인 경우 null을 반환&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;.namedItem()&lt;/code&gt; : 파라미터로 받은 문자열과 일치하는 이름의 노드를 반환하며, 해당 이름을 가진 노드가 없는 경우 null을 반환&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;주의사항&quot;&gt;주의사항&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;순수 숫자로 된 id를 인식할 수 없음
+    &lt;ul&gt;
+      &lt;li&gt;HTML5에서는 허용하지만, 배열 형식의 접근과 충돌할 수 있어서 HTMLCollection에서는 지원하지 않음&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;멤버(노드 목록)을 이름(&lt;code class=&quot;highlighter-rouge&quot;&gt;.name&lt;/code&gt;)과 인덱스(&lt;code class=&quot;highlighter-rouge&quot;&gt;.item()&lt;/code&gt;)로 직접 노출함&lt;/li&gt;
+  &lt;li&gt;HTML ID는 유효한 문자로 &lt;strong&gt;:&lt;/strong&gt; 와 &lt;strong&gt;.&lt;/strong&gt; 을 포함할 수 있는데, 속성에 접근하기 위해서는 대괄호 표기법을 사용&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;elem1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;elem2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// document.forms은 HTMLCollection이다.&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;elem1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;forms&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;elem2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;forms&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;alert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;elem1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;elem2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// &quot;true&quot;&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;elem1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;forms&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;myForm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;elem2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;forms&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;namedItem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;myForm&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;alert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;elem1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;elem2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// &quot;true&quot;&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;elem1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;forms&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;named.item.with.periods&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;nodelist&quot;&gt;&lt;a href=&quot;https://developer.mozilla.org/ko/docs/Web/API/NodeList&quot;&gt;NodeList&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;element.childNodes&lt;/code&gt; 속성, &lt;code class=&quot;highlighter-rouge&quot;&gt;document.querySelectorAll&lt;/code&gt; 메서드로 반환되는 노드의 모음&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;유사배열이지만 &lt;code class=&quot;highlighter-rouge&quot;&gt;.forEach()&lt;/code&gt;를 사용하여 반복할 수 있고 &lt;code class=&quot;highlighter-rouge&quot;&gt;Array.from()&lt;/code&gt;으로 배열로 변환할 수도 있음
+    &lt;ul&gt;
+      &lt;li&gt;일부 구형 브라우저의 경우 지원하지 않으며, &lt;code class=&quot;highlighter-rouge&quot;&gt;Array.prototype.forEach()&lt;/code&gt;를 사용하면 됨&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;속성-1&quot;&gt;속성&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;.length&lt;/code&gt; : NodeList의 갯수를 반환&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;메서드-1&quot;&gt;메서드&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;.item()&lt;/code&gt; : 파라미터로 받은 인덱스의 노드를 반환하며, 범위를 벗어난 인덱스인 경우 null을 반환&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;.entries()&lt;/code&gt; : iterator를 반환하여 모든 키(index)/값(node) 쌍을 순회할 수 있도록 함&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;.forEach()&lt;/code&gt; : 요소(element)마다 한 번씩, 인자로 전달 받은 함수를 실행하여 요소를 인수(argument)로 함수에 전달&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;.keys()&lt;/code&gt; : 콜렉션에 포함된 모든 키(unsigned int)를 통과할 수 있는 iterator 를 반환 (&lt;em&gt;왜 쓰는지 모르겠음&lt;/em&gt;)&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;.values()&lt;/code&gt; : 콜렉션에 포함된 모든 값(node)를 통과할 수 있는 iterator를 반환 (&lt;em&gt;왜 쓰는지 모르겠음&lt;/em&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;주의사항-1&quot;&gt;주의사항&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Node.childNodes&lt;/code&gt;의 NodeList는 라이브 콜렉션으로, DOM의 변경사항을 실시간으로 반영함&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;document.querySelectorAll()&lt;/code&gt;의 NodeList는 정적 콜렉션으로, DOM이 변경되어도 collection의 내용에는 영향을 주지 않음&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;staticNList&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;querySelectorAll&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'div'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;dynamicNList&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;childNodes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// &amp;gt; dynamicNList&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// NodeList(33) [text, script, text, ul#nav-access, text, comment, text, header#main-header.header-main, ...]&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// &amp;gt; staticNList&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// NodeList(52) [div.nav-toolbox-wrapper, div#nav-tech-submenu.submenu.js-submenu, div.submenu-column, div#nav-learn-submenu.submenu.js-submenu, ...]&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;createElement&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'div'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;appendChild&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;div&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// &amp;gt; dynamicNList&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// NodeList(34) [text, script, text, ul#nav-access, text, comment, text, header#main-header.header-main, ...]&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// &amp;gt; staticNList&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// NodeList(52) [div.nav-toolbox-wrapper, div#nav-tech-submenu.submenu.js-submenu, div.submenu-column, div#nav-learn-submenu.submenu.js-submenu, ...]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</description>
+        <pubDate>Tue, 26 Mar 2019 00:00:00 +0900</pubDate>
+        <link>http://devsoyoung.github.io//javascript/2019/03/26/js-htmlcollection-nodelist.html</link>
+        <guid isPermaLink="true">http://devsoyoung.github.io//javascript/2019/03/26/js-htmlcollection-nodelist.html</guid>
+        
+        
+        <category>Javascript</category>
+        
+      </item>
+    
+      <item>
+        <title>[JS] Javascript 예외처리: try, catch, finally</title>
+        <description>&lt;p&gt;Javascript의 예외처리 방법에 대해 정리한 글입니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;예외처리의-필요성&quot;&gt;예외처리의 필요성&lt;/h2&gt;
+&lt;p&gt;예상치 못하게 발생한 에러를 잘 처리해야 프로그램 전체가 멈추지 않고 동작할 수 있음&lt;/p&gt;
+
+&lt;h2 id=&quot;try-catch-finally&quot;&gt;Try, Catch, Finally&lt;/h2&gt;
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;c1&quot;&gt;// 실행하고 싶은 코드&lt;/span&gt;
+	&lt;span class=&quot;c1&quot;&gt;// 여기서 실행하다가 에러가 발생하면 catch 블록으로 이동&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;전달할&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;e&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;값&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;		&lt;span class=&quot;c1&quot;&gt;// catch 블록으로 이동&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;c1&quot;&gt;// 에러가 발생했을 때,&lt;/span&gt;
+	&lt;span class=&quot;c1&quot;&gt;// 에러를 파라미터로 받아서 처리함&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;finally&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;c1&quot;&gt;// 가장 마지막에 항상 실행되어야 할 코드&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;try는 반드시 있어야 함&lt;/li&gt;
+  &lt;li&gt;catch나 finally는 둘 중 하나만 있어도 실행 가능&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;throw&lt;/code&gt; : 에러를 발생시키는 명령어&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;에러-처리-과정&quot;&gt;에러 처리 과정&lt;/h3&gt;
+&lt;p&gt;throw가 발생하면 catch 구문을 찾아서 이동&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;현재 블록에 catch나 finally가 없는 경우 상위 블록이나 호출한 함수로 이동&lt;/li&gt;
+  &lt;li&gt;catch가 존재하지 않는 경우, finally를 실행하고, catch 될 수 있는 구문을 찾아서 이동&lt;/li&gt;
+  &lt;li&gt;catch 구문에서 에러가 처리되고, 이후 코드를 실행&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Tue, 26 Mar 2019 00:00:00 +0900</pubDate>
+        <link>http://devsoyoung.github.io//javascript/2019/03/26/js-exception.html</link>
+        <guid isPermaLink="true">http://devsoyoung.github.io//javascript/2019/03/26/js-exception.html</guid>
+        
+        
+        <category>Javascript</category>
+        
+      </item>
+    
+      <item>
+        <title>[JS] 이벤트 등록, 이벤트 관련 메소드</title>
+        <description>&lt;p&gt;Javascript에서 가장 많이 수행하는 event 등록, event 관련 메소드에 대해 정리한 글입니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;이벤트-등록하기&quot;&gt;이벤트 등록하기&lt;/h2&gt;
+&lt;p&gt;이벤트 대상(target)의 &lt;code class=&quot;highlighter-rouge&quot;&gt;addEventListener&lt;/code&gt; 메소드로 지정한 이벤트가 대상에 전달되었을 때 실행할 함수를 등록할 수 있음&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;대상&lt;/strong&gt;: Element, Document, Window, XMLHTTPRequest 등, 이벤트를 지원하는 모든 대상&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;addEventListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;listener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;addEventListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;listener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;useCapture&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;addEventListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;listener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;useCapture&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;wantsUntrusted&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;type&lt;/strong&gt; : 반응할 이벤트의 종류를 나타내는 문자열, 대소문자 구분&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;listener&lt;/strong&gt; : 지정한 이벤트가 발생했을 때 알림을 받는 객체, &lt;code class=&quot;highlighter-rouge&quot;&gt;EventListener&lt;/code&gt; 인터페이스나 함수를 구현하는 객체여야 함&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;options&lt;/strong&gt; :&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;useCapture&lt;/strong&gt; :&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;wantsUntruste&lt;/strong&gt; :&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;이벤트-등록-방법-비교&quot;&gt;이벤트 등록 방법 비교&lt;/h3&gt;
+
+&lt;p&gt;클릭 이벤트를 등록하는 방법에는 아래 두 가지 경우가 있음&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;targetEl&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getElementById&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'targetId'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// addEventListener 메소드로 등록하는 경우&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;targetEl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;addEventListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'click'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'event occur'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 직접 onclick 속성에 등록하는 경우&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;targetEl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;onclick&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'event occur'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;addEventListener&lt;/code&gt; 메소드를 사용해서 이벤트 핸들러를 등록하는 경우, 같은 이벤트에 여러 개의 핸들러를 등록할 수 있음&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;한 이벤트에 대해서 복수의 이벤트 리스너를 연결한 경우, onclick에 바로 함수를 전달하는 것처럼 하면 다른 이벤트 리스너가 지워지기 때문에, &lt;code class=&quot;highlighter-rouge&quot;&gt;addEventLinster&lt;/code&gt;를 사용하는 것이 좋음&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;여러-개의-엘리먼트에-하나의-리스너-등록하기&quot;&gt;여러 개의 엘리먼트에 하나의 리스너 등록하기&lt;/h3&gt;
+&lt;p&gt;이벤트 리스너를 함수로 만들고, 각 엘리먼트의 이벤트 리스너에 동일한 함수를 전달&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;input&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;button&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;target1&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;value=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;button1&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;input&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;button&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;target2&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;value=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;button2&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;target1El&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getElementById&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'target1'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;target2El&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getElementById&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'target2'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;btnListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;switch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'target1'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;alert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'target2'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;alert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;target1El&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;addEventListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'click'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;btnListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;target2El&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;addEventListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'click'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;btnListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;event-관련-메소드&quot;&gt;event 관련 메소드&lt;/h2&gt;
+&lt;h3 id=&quot;preventdefault&quot;&gt;preventDefault()&lt;/h3&gt;
+&lt;p&gt;기본으로 설정되어 있는 동작의 실행을 막음&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;submit을 클릭한 경우 preventDefault()로 기본 제출 동작을 막고 원하는 작업 수행 가능&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;stoppropagation&quot;&gt;stopPropagation()&lt;/h3&gt;
+&lt;p&gt;이벤트 버블링이나 캡쳐링으로 상/하위 태그로 전파되는 것을 막음&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;클릭한 태그와 관련된 동작만 수행할 수 있도록 함&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+&lt;h2 id=&quot;참고링크&quot;&gt;참고링크&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://developer.mozilla.org/ko/docs/Web/API/EventTarget/addEventListener&quot;&gt;MDN - EventTarget.addEventListener&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Tue, 26 Mar 2019 00:00:00 +0900</pubDate>
+        <link>http://devsoyoung.github.io//javascript/2019/03/26/js-event-basic.html</link>
+        <guid isPermaLink="true">http://devsoyoung.github.io//javascript/2019/03/26/js-event-basic.html</guid>
+        
+        
+        <category>Javascript</category>
+        
+      </item>
+    
+      <item>
+        <title>[CSS] display 속성, inline과 block의 차이</title>
+        <description>&lt;p&gt;CSS의 주요속성 중 하나인 display 속성과, 속성값 중 inline과 block이 어떤 차이가 있는지 정리한 글입니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;display-속성&quot;&gt;display 속성&lt;/h2&gt;
+&lt;p&gt;요소를 화면에 보이거나 숨길 때 사용한다.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;visibility와의 차이 : visibility는 요소를 보일지 말지 결정, display는 보여지는 방법 결정&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;inline&quot;&gt;inline&lt;/h3&gt;
+&lt;p&gt;기본 값, 앞뒤로 줄바꿈되지 않는다.&lt;/p&gt;
+
+&lt;h3 id=&quot;block&quot;&gt;block&lt;/h3&gt;
+&lt;p&gt;요소 앞 뒤로 줄바꿈된다. (div는 block 요소)&lt;/p&gt;
+
+&lt;h3 id=&quot;none&quot;&gt;none&lt;/h3&gt;
+&lt;p&gt;박스가 생성되지 않으므로, 공간을 차지하지 않는다.&lt;/p&gt;
+
+&lt;h3 id=&quot;inline-block&quot;&gt;inline-block&lt;/h3&gt;
+&lt;p&gt;요소는 inline인데 내부는 block처럼 표시되고, 박스 모양이 inline처럼 옆으로 늘어선다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;inline-요소와-block-요소&quot;&gt;inline 요소와 block 요소&lt;/h2&gt;
+&lt;p&gt;HTML 태그는 크게 inline요소와 block요소로 나뉘며 각 요소에 적용되는 CSS가 다르다.&lt;/p&gt;
+
+&lt;h3 id=&quot;inline-요소&quot;&gt;inline 요소&lt;/h3&gt;
+&lt;p&gt;항상 block 요소 안에 포함되며, 인라인 요소 안에 다른 인라인 요소 포함 가능하다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;기본&lt;/strong&gt; : 컨텐츠가 끝나는 지점까지를 넓이로 가짐&lt;/li&gt;
+  &lt;li&gt;width, height로 임의로 변형을 줄 수 없음&lt;/li&gt;
+  &lt;li&gt;line-height로 줄간격을, text-align으로 텍스트 정렬을 설정 가능&lt;/li&gt;
+  &lt;li&gt;인라인 요소 다음에는 줄바꿈 없이 바로 이어서 보임&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;inline-요소-태그의-종류&quot;&gt;inline 요소 태그의 종류&lt;/h4&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;abbr&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;acronym&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;b&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;bdo&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;big&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;br&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;button&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;cite&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;code&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;dfn&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;em&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;i&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;img&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;input&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;kbd&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;label&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;map&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;object&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;q&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;samp&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;small&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;script&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;select&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;span&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;strong&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;sub&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;sup&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;textarea&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;tt&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;var&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;block-요소&quot;&gt;block 요소&lt;/h3&gt;
+&lt;p&gt;모든 inline요소를 포함할 수 있고, 다른 block 요소도 포함할 수 있다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;기본&lt;/strong&gt; : 가로폭 전체의 넓이를 가지는 직사각형 형태&lt;/li&gt;
+  &lt;li&gt;블록요소 다음에는 줄바꿈이 이루어짐&lt;/li&gt;
+  &lt;li&gt;display: inline 설정으로 블록 요소를 인라인 요소로 변경할 수 있음&lt;/li&gt;
+  &lt;li&gt;block 요소에 text-align을 주면 요소 자체가 아닌, 내부의 모든 인라인 요소에 적용되는 것&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;block-요소-태그의-종류&quot;&gt;block 요소 태그의 종류&lt;/h4&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;address&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;article&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;aside&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;audio&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;blockquote&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;canvas&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;dd&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;div&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;dl&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;fieldset&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;figcaption&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;figure&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;footer&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;form&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;h1&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;h2&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;h3&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;h4&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;h5&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;h6&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;header&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;hgroup&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;hr&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;noscript&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;ol&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;output&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;p&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;pre&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;section&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;table&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;ul&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;video&lt;/code&gt;&lt;/p&gt;
+</description>
+        <pubDate>Tue, 26 Mar 2019 00:00:00 +0900</pubDate>
+        <link>http://devsoyoung.github.io//css/2019/03/26/css-display.html</link>
+        <guid isPermaLink="true">http://devsoyoung.github.io//css/2019/03/26/css-display.html</guid>
+        
+        
+        <category>CSS</category>
         
       </item>
     

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <title>큐트리 개발 블로그 - 프론트엔드 개발과 귀여운 것에 관심이 많습니다.</title>
+    <meta name="description" content="큐트리 개발 관련 블로그" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="MobileOptimized" content="320" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+    <!-- Customisation  -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/main.css" />
+
+</head>
+<body class="home-template">
+
+    <header class="main-header post-head no-cover">
+    <nav class="main-nav  clearfix">
+        <a class="back-button icon-arrow-left" href="/">Home</a>
+    </nav>
+</header>
+
+<main class="content" role="main">
+
+    <article class="post">
+
+        <header class="post-header">
+            <h1 class="post-title">[CSS] display 속성, inline과 block의 차이</h1>
+            <section class="post-meta">
+                <time class="post-date" datetime="2019-03-26">26 Mar 2019</time>
+                
+                    on CSS
+                
+            </section>
+        </header>
+
+<!--         <header class="post-header">
+            <a id="blog-logo" href="http://devsoyoung.github.io">
+                
+                    <span class="blog-title">큐트리 개발 블로그</span>
+                
+            </a>
+        </header> -->
+
+        <!-- <span class="post-meta">
+            <time datetime="2019-03-26">26 Mar 2019</time>
+            
+                on CSS
+            
+        </span> -->
+
+        <!-- <h1 class="post-title">[CSS] display 속성, inline과 block의 차이</h1> -->
+
+        <section class="post-content">
+            <p>CSS의 주요속성 중 하나인 display 속성과, 속성값 중 inline과 block이 어떤 차이가 있는지 정리한 글입니다.</p>
+
+<h2 id="display-속성">display 속성</h2>
+<p>요소를 화면에 보이거나 숨길 때 사용한다.</p>
+<ul>
+  <li>visibility와의 차이 : visibility는 요소를 보일지 말지 결정, display는 보여지는 방법 결정</li>
+</ul>
+
+<h3 id="inline">inline</h3>
+<p>기본 값, 앞뒤로 줄바꿈되지 않는다.</p>
+
+<h3 id="block">block</h3>
+<p>요소 앞 뒤로 줄바꿈된다. (div는 block 요소)</p>
+
+<h3 id="none">none</h3>
+<p>박스가 생성되지 않으므로, 공간을 차지하지 않는다.</p>
+
+<h3 id="inline-block">inline-block</h3>
+<p>요소는 inline인데 내부는 block처럼 표시되고, 박스 모양이 inline처럼 옆으로 늘어선다.</p>
+
+<hr />
+
+<h2 id="inline-요소와-block-요소">inline 요소와 block 요소</h2>
+<p>HTML 태그는 크게 inline요소와 block요소로 나뉘며 각 요소에 적용되는 CSS가 다르다.</p>
+
+<h3 id="inline-요소">inline 요소</h3>
+<p>항상 block 요소 안에 포함되며, 인라인 요소 안에 다른 인라인 요소 포함 가능하다.</p>
+
+<ul>
+  <li><strong>기본</strong> : 컨텐츠가 끝나는 지점까지를 넓이로 가짐</li>
+  <li>width, height로 임의로 변형을 줄 수 없음</li>
+  <li>line-height로 줄간격을, text-align으로 텍스트 정렬을 설정 가능</li>
+  <li>인라인 요소 다음에는 줄바꿈 없이 바로 이어서 보임</li>
+</ul>
+
+<h4 id="inline-요소-태그의-종류">inline 요소 태그의 종류</h4>
+
+<p><code class="highlighter-rouge">a</code>, <code class="highlighter-rouge">abbr</code>, <code class="highlighter-rouge">acronym</code>, <code class="highlighter-rouge">b</code>, <code class="highlighter-rouge">bdo</code>, <code class="highlighter-rouge">big</code>, <code class="highlighter-rouge">br</code>, <code class="highlighter-rouge">button</code>, <code class="highlighter-rouge">cite</code>, <code class="highlighter-rouge">code</code>, <code class="highlighter-rouge">dfn</code>, <code class="highlighter-rouge">em</code>, <code class="highlighter-rouge">i</code>, <code class="highlighter-rouge">img</code>, <code class="highlighter-rouge">input</code>, <code class="highlighter-rouge">kbd</code>, <code class="highlighter-rouge">label</code>, <code class="highlighter-rouge">map</code>, <code class="highlighter-rouge">object</code>, <code class="highlighter-rouge">q</code>, <code class="highlighter-rouge">samp</code>, <code class="highlighter-rouge">small</code>, <code class="highlighter-rouge">script</code>, <code class="highlighter-rouge">select</code>, <code class="highlighter-rouge">span</code>, <code class="highlighter-rouge">strong</code>, <code class="highlighter-rouge">sub</code>, <code class="highlighter-rouge">sup</code>, <code class="highlighter-rouge">textarea</code>, <code class="highlighter-rouge">tt</code>, <code class="highlighter-rouge">var</code></p>
+
+<h3 id="block-요소">block 요소</h3>
+<p>모든 inline요소를 포함할 수 있고, 다른 block 요소도 포함할 수 있다.</p>
+
+<ul>
+  <li><strong>기본</strong> : 가로폭 전체의 넓이를 가지는 직사각형 형태</li>
+  <li>블록요소 다음에는 줄바꿈이 이루어짐</li>
+  <li>display: inline 설정으로 블록 요소를 인라인 요소로 변경할 수 있음</li>
+  <li>block 요소에 text-align을 주면 요소 자체가 아닌, 내부의 모든 인라인 요소에 적용되는 것</li>
+</ul>
+
+<h4 id="block-요소-태그의-종류">block 요소 태그의 종류</h4>
+<p><code class="highlighter-rouge">address</code>, <code class="highlighter-rouge">article</code>, <code class="highlighter-rouge">aside</code>, <code class="highlighter-rouge">audio</code>, <code class="highlighter-rouge">blockquote</code>, <code class="highlighter-rouge">canvas</code>, <code class="highlighter-rouge">dd</code>, <code class="highlighter-rouge">div</code>, <code class="highlighter-rouge">dl</code>, <code class="highlighter-rouge">fieldset</code>, <code class="highlighter-rouge">figcaption</code>, <code class="highlighter-rouge">figure</code>, <code class="highlighter-rouge">footer</code>, <code class="highlighter-rouge">form</code>, <code class="highlighter-rouge">h1</code>, <code class="highlighter-rouge">h2</code>, <code class="highlighter-rouge">h3</code>, <code class="highlighter-rouge">h4</code>, <code class="highlighter-rouge">h5</code>, <code class="highlighter-rouge">h6</code>, <code class="highlighter-rouge">header</code>, <code class="highlighter-rouge">hgroup</code>, <code class="highlighter-rouge">hr</code>, <code class="highlighter-rouge">noscript</code>, <code class="highlighter-rouge">ol</code>, <code class="highlighter-rouge">output</code>, <code class="highlighter-rouge">p</code>, <code class="highlighter-rouge">pre</code>, <code class="highlighter-rouge">section</code>, <code class="highlighter-rouge">table</code>, <code class="highlighter-rouge">ul</code>, <code class="highlighter-rouge">video</code></p>
+
+        </section>
+
+        
+
+        <footer class="post-footer">
+            <!-- If we want to display author's name and bio -->
+            
+                <figure class="author-image">
+                    <a class="img" href="/" style="background-image: url(/assets/images/profile.png)">
+                    <span class="hidden">CUTELEE's Picture</span></a>
+                </figure>
+                <section class="author">
+                    <!-- Author Name -->
+                    <h4> CUTELEE </h4>
+                    <!-- Author Bio -->
+                    <p>
+                        프론트엔드 개발과 귀여운 것에 관심이 많습니다.
+                    </p>
+                </section>
+            
+
+            <!-- Share links section -->
+            <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-twitter" href="http://twitter.com/share?text=[CSS] display 속성, inline과 block의 차이&amp;url=http://devsoyoung.github.io/css/2019/03/26/css-display.html"
+        onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://devsoyoung.github.io/css/2019/03/26/css-display.html"
+        onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://devsoyoung.github.io/css/2019/03/26/css-display.html"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+            <!-- Disqus comments -->
+            
+
+        </footer>
+
+    </article>
+
+</main>
+
+    <footer class="site-footer clearfix">
+      <section class="copyright">
+        <a href="/">큐트리 개발 블로그</a> &copy; 
+              2019 &bull; All rights reserved.
+      </section>
+      <section class="poweredby">Made with Jekyll using 
+        <a href="http://github.com/rosario/kasper">Kasper theme</a>
+      </section>
+    </footer>
+    
+    <script type="text/javascript" src="/assets/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/assets/js/index.js"></script>
+
+    <!-- Google Analytics Tracking code -->
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>   
+</body>
+</html>
