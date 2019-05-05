@@ -291,7 +291,7 @@ hr {
     height: 1px;
     border: 0;
     border-top: #EFEFEF 1px solid;
-    margin: 3.2em 0;
+    margin: 1.5em 0;
     padding: 0;
 }
 
@@ -924,6 +924,10 @@ body:not(.post-template) .post-title {
     width: 126%;
     max-width: none;
     margin: 0 -13%;
+}
+
+.post-content.about {
+    margin-left: 3rem;
 }
 
 /* The author credit area after the post */

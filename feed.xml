@@ -3,10 +3,10 @@
   <channel>
     <title></title>
     <description>프론트엔드 개발과 귀여운 것에 관심이 많습니다.</description>
-    <link>http://localhost:4000//</link>
-    <atom:link href="http://localhost:4000//feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 04 May 2019 11:18:06 +0900</pubDate>
-    <lastBuildDate>Sat, 04 May 2019 11:18:06 +0900</lastBuildDate>
+    <link>http://devsoyoung.github.io//</link>
+    <atom:link href="http://devsoyoung.github.io//feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sun, 05 May 2019 14:31:33 +0900</pubDate>
+    <lastBuildDate>Sun, 05 May 2019 14:31:33 +0900</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -276,8 +276,8 @@ style-loader의 역할을 수행하지만, 플러그인이기 때문에 &lt;stro
 &lt;/ul&gt;
 </description>
         <pubDate>Sat, 04 May 2019 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000//fe/2019/05/04/webpack-introduce.html</link>
-        <guid isPermaLink="true">http://localhost:4000//fe/2019/05/04/webpack-introduce.html</guid>
+        <link>http://devsoyoung.github.io//fe/2019/05/04/webpack-introduce.html</link>
+        <guid isPermaLink="true">http://devsoyoung.github.io//fe/2019/05/04/webpack-introduce.html</guid>
         
         
         <category>FE</category>
