@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <title>큐트리 개발 블로그 - 프론트엔드 개발과 귀여운 것에 관심이 많습니다.</title>
+    <meta name="description" content="큐트리 개발 관련 블로그" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="MobileOptimized" content="320" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+    <!-- Customisation  -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/main.css" />
+
+</head>
+<body class="home-template">
+
+    <header class="main-header post-head no-cover">
+    <nav class="main-nav  clearfix">
+        <a class="back-button icon-arrow-left" href="/">Home</a>
+    </nav>
+</header>
+
+<main class="content" role="main">
+
+    <article class="post">
+
+        <header class="post-header">
+            <h1 class="post-title">[MARKDOWN] 마크다운 이미지 크기, 정렬 등</h1>
+            <section class="post-meta">
+                <time class="post-date" datetime="2019-05-06">06 May 2019</time>
+                
+                    on ETC
+                
+            </section>
+        </header>
+
+<!--         <header class="post-header">
+            <a id="blog-logo" href="http://devsoyoung.github.io">
+                
+                    <span class="blog-title">큐트리 개발 블로그</span>
+                
+            </a>
+        </header> -->
+
+        <!-- <span class="post-meta">
+            <time datetime="2019-05-06">06 May 2019</time>
+            
+                on ETC
+            
+        </span> -->
+
+        <!-- <h1 class="post-title">[MARKDOWN] 마크다운 이미지 크기, 정렬 등</h1> -->
+
+        <section class="post-content">
+            <p>github에서 마크다운을 작성할 때, 이미지의 크기를 조정하는 방법과 정렬하는 방법을 정리한 글입니다.</p>
+
+<h2 id="이미지-첨부--간단버전">이미지 첨부 : 간단버전</h2>
+<p>이미지를 첨부하는 가장 간단한 방법은 아래와 같다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>![alt](src)
+</code></pre></div></div>
+
+<h2 id="이미지-크기-조정하기">이미지 크기 조정하기</h2>
+<p><code class="highlighter-rouge">&lt;img&gt;</code> 태그로 이미지를 첨부하고, width, height 속성을 준다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;img src="image_src" height="100px" width="300px"&gt;
+</code></pre></div></div>
+
+<h2 id="이미지-정렬하기">이미지 정렬하기</h2>
+<h3 id="가운데-정렬하기">가운데 정렬하기</h3>
+<p>마찬가지로 <code class="highlighter-rouge">&lt;img&gt;</code> 태그로 이미지를 첨부하고, 이미지 태그를 p태그로 감싼다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;p align="center"&gt;&lt;img src="image_src"&gt;&lt;/p&gt;
+</code></pre></div></div>
+
+<h3 id="오른쪽-정렬하기-왼쪽-정렬하기">오른쪽 정렬하기, 왼쪽 정렬하기</h3>
+<p>왼쪽 정렬은 기본값이며, 오른쪽 정렬은 <code class="highlighter-rouge">img</code> 태그에 align 속성을 준다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;img src="image_src" align="right"&gt;
+</code></pre></div></div>
+
+<hr />
+<h2 id="참고링크">참고링크</h2>
+<ul>
+  <li><a href="https://news.trendtalk.kr/markdown-intro/#index-08">마크다운(Markdown) 소개방법 - 트렌드톡</a></li>
+  <li><a href="https://gist.github.com/DavidWells/7d2e0e1bc78f4ac59a123ddf8b74932d">aligning-images.md</a></li>
+</ul>
+
+        </section>
+
+        
+
+        <footer class="post-footer">
+            <!-- If we want to display author's name and bio -->
+            
+                <figure class="author-image">
+                    <a class="img" href="/" style="background-image: url(/assets/images/profile.png)">
+                    <span class="hidden">CUTELEE's Picture</span></a>
+                </figure>
+                <section class="author">
+                    <!-- Author Name -->
+                    <h4> CUTELEE </h4>
+                    <!-- Author Bio -->
+                    <p>
+                        프론트엔드 개발과 귀여운 것에 관심이 많습니다.
+                    </p>
+                </section>
+            
+
+            <!-- Share links section -->
+            <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-twitter" href="http://twitter.com/share?text=[MARKDOWN] 마크다운 이미지 크기, 정렬 등&amp;url=http://devsoyoung.github.io/etc/2019/05/06/markdown-image-tag.html"
+        onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://devsoyoung.github.io/etc/2019/05/06/markdown-image-tag.html"
+        onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://devsoyoung.github.io/etc/2019/05/06/markdown-image-tag.html"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+            <!-- Disqus comments -->
+            
+
+        </footer>
+
+    </article>
+
+</main>
+
+    <footer class="site-footer clearfix">
+      <section class="copyright">
+        <a href="/">큐트리 개발 블로그</a> &copy; 
+              2019 &bull; All rights reserved.
+      </section>
+      <section class="poweredby">Made with Jekyll using 
+        <a href="http://github.com/rosario/kasper">Kasper theme</a>
+      </section>
+    </footer>
+    
+    <script type="text/javascript" src="/assets/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/assets/js/index.js"></script>
+
+    <!-- Google Analytics Tracking code -->
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>   
+</body>
+</html>

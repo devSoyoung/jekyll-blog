@@ -637,6 +637,7 @@ margin on the iframe, cause it breaks stuff. */
 }
 
 .main-nav a {
+    padding-top: 10px;
     text-decoration: none;
     font-family: 'Open Sans', sans-serif;
 }
@@ -1241,7 +1242,7 @@ body:not(.post-template) .post-title {
 .no-cover.post-head.main-header {
     height: 85px;
     min-height: 0;
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
     background: #f8ecc9;
 }
 
@@ -1518,7 +1519,7 @@ body:not(.post-template) .post-title {
 @media only screen and (max-width: 900px) {
 
     .main-nav {
-        padding: 15px;
+        padding: 10px 0 0 25px;
     }
 
     blockquote {
@@ -1643,6 +1644,11 @@ body:not(.post-template) .post-title {
    ========================================================================== */
 
 @media only screen and (max-width: 500px) {
+    .post-title a {
+        font-size: 20px;
+        font-weight: 600;
+        letter-spacing: -2px;
+    }
 
     .main-header {
         margin-bottom: 15px;
@@ -1659,10 +1665,12 @@ body:not(.post-template) .post-title {
         padding: 10% 0;
     }
 
+    .post-excerpt p {
+        line-height: 0;
+    }
     .main-nav {
         padding: 0;
         margin-bottom: 2rem;
-        border-bottom: #e0e4e7 1px solid;
     }
 
     .blog-logo {
@@ -1755,7 +1763,7 @@ body:not(.post-template) .post-title {
 
     p, ul, ol, dl {
         font-size: 0.95em;
-        margin: 0 0 2.5rem 0;
+        /*margin: 0 0 2.5rem 0;*/
     }
 
     .page-title {
@@ -1782,7 +1790,7 @@ body:not(.post-template) .post-title {
 
     h2 {
         font-size: 2.4rem;
-        letter-spacing: 0;
+        letter-spacing: -2px;
     }
 
     h3 {
@@ -1900,6 +1908,10 @@ body:not(.post-template) .post-title {
         display: none;
     }
 
+    blockquote {
+        padding-left: 15px;
+        padding-right: 10px;
+    }
 }
 
 

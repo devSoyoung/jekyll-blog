@@ -5,9 +5,54 @@
     <description>프론트엔드 개발과 귀여운 것에 관심이 많습니다.</description>
     <link>http://devsoyoung.github.io//</link>
     <atom:link href="http://devsoyoung.github.io//feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 06 May 2019 15:33:30 +0900</pubDate>
-    <lastBuildDate>Mon, 06 May 2019 15:33:30 +0900</lastBuildDate>
+    <pubDate>Mon, 06 May 2019 18:44:23 +0900</pubDate>
+    <lastBuildDate>Mon, 06 May 2019 18:44:23 +0900</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
+    
+      <item>
+        <title>[MARKDOWN] 마크다운 이미지 크기, 정렬 등</title>
+        <description>&lt;p&gt;github에서 마크다운을 작성할 때, 이미지의 크기를 조정하는 방법과 정렬하는 방법을 정리한 글입니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;이미지-첨부--간단버전&quot;&gt;이미지 첨부 : 간단버전&lt;/h2&gt;
+&lt;p&gt;이미지를 첨부하는 가장 간단한 방법은 아래와 같다.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;![alt](src)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;이미지-크기-조정하기&quot;&gt;이미지 크기 조정하기&lt;/h2&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;img&amp;gt;&lt;/code&gt; 태그로 이미지를 첨부하고, width, height 속성을 준다.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;img src=&quot;image_src&quot; height=&quot;100px&quot; width=&quot;300px&quot;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;이미지-정렬하기&quot;&gt;이미지 정렬하기&lt;/h2&gt;
+&lt;h3 id=&quot;가운데-정렬하기&quot;&gt;가운데 정렬하기&lt;/h3&gt;
+&lt;p&gt;마찬가지로 &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;img&amp;gt;&lt;/code&gt; 태그로 이미지를 첨부하고, 이미지 태그를 p태그로 감싼다.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;p align=&quot;center&quot;&amp;gt;&amp;lt;img src=&quot;image_src&quot;&amp;gt;&amp;lt;/p&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;오른쪽-정렬하기-왼쪽-정렬하기&quot;&gt;오른쪽 정렬하기, 왼쪽 정렬하기&lt;/h3&gt;
+&lt;p&gt;왼쪽 정렬은 기본값이며, 오른쪽 정렬은 &lt;code class=&quot;highlighter-rouge&quot;&gt;img&lt;/code&gt; 태그에 align 속성을 준다.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;img src=&quot;image_src&quot; align=&quot;right&quot;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+&lt;h2 id=&quot;참고링크&quot;&gt;참고링크&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://news.trendtalk.kr/markdown-intro/#index-08&quot;&gt;마크다운(Markdown) 소개방법 - 트렌드톡&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://gist.github.com/DavidWells/7d2e0e1bc78f4ac59a123ddf8b74932d&quot;&gt;aligning-images.md&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Mon, 06 May 2019 00:00:00 +0900</pubDate>
+        <link>http://devsoyoung.github.io//etc/2019/05/06/markdown-image-tag.html</link>
+        <guid isPermaLink="true">http://devsoyoung.github.io//etc/2019/05/06/markdown-image-tag.html</guid>
+        
+        
+        <category>ETC</category>
+        
+      </item>
     
       <item>
         <title>[HTML] 인코딩 설정 메타태그</title>
@@ -1035,104 +1080,6 @@ d ㅋㅌ* minify(주석제거, 공백제거), obfuscation(변수명 변경), gzi
         <pubDate>Tue, 26 Mar 2019 00:00:00 +0900</pubDate>
         <link>http://devsoyoung.github.io//javascript/2019/03/26/js-exception.html</link>
         <guid isPermaLink="true">http://devsoyoung.github.io//javascript/2019/03/26/js-exception.html</guid>
-        
-        
-        <category>Javascript</category>
-        
-      </item>
-    
-      <item>
-        <title>[JS] 이벤트 등록, 이벤트 관련 메소드</title>
-        <description>&lt;p&gt;Javascript에서 가장 많이 수행하는 event 등록, event 관련 메소드에 대해 정리한 글입니다.&lt;/p&gt;
-
-&lt;h2 id=&quot;이벤트-등록하기&quot;&gt;이벤트 등록하기&lt;/h2&gt;
-&lt;p&gt;이벤트 대상(target)의 &lt;code class=&quot;highlighter-rouge&quot;&gt;addEventListener&lt;/code&gt; 메소드로 지정한 이벤트가 대상에 전달되었을 때 실행할 함수를 등록할 수 있음&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;대상&lt;/strong&gt;: Element, Document, Window, XMLHTTPRequest 등, 이벤트를 지원하는 모든 대상&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;addEventListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;listener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;addEventListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;listener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;useCapture&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;addEventListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;listener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;useCapture&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;wantsUntrusted&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;type&lt;/strong&gt; : 반응할 이벤트의 종류를 나타내는 문자열, 대소문자 구분&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;listener&lt;/strong&gt; : 지정한 이벤트가 발생했을 때 알림을 받는 객체, &lt;code class=&quot;highlighter-rouge&quot;&gt;EventListener&lt;/code&gt; 인터페이스나 함수를 구현하는 객체여야 함&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;options&lt;/strong&gt; :&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;useCapture&lt;/strong&gt; :&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;wantsUntruste&lt;/strong&gt; :&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;이벤트-등록-방법-비교&quot;&gt;이벤트 등록 방법 비교&lt;/h3&gt;
-
-&lt;p&gt;클릭 이벤트를 등록하는 방법에는 아래 두 가지 경우가 있음&lt;/p&gt;
-
-&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;targetEl&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getElementById&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'targetId'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// addEventListener 메소드로 등록하는 경우&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;targetEl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;addEventListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'click'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'event occur'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// 직접 onclick 속성에 등록하는 경우&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;targetEl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;onclick&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'event occur'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;addEventListener&lt;/code&gt; 메소드를 사용해서 이벤트 핸들러를 등록하는 경우, 같은 이벤트에 여러 개의 핸들러를 등록할 수 있음&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;한 이벤트에 대해서 복수의 이벤트 리스너를 연결한 경우, onclick에 바로 함수를 전달하는 것처럼 하면 다른 이벤트 리스너가 지워지기 때문에, &lt;code class=&quot;highlighter-rouge&quot;&gt;addEventLinster&lt;/code&gt;를 사용하는 것이 좋음&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&quot;여러-개의-엘리먼트에-하나의-리스너-등록하기&quot;&gt;여러 개의 엘리먼트에 하나의 리스너 등록하기&lt;/h3&gt;
-&lt;p&gt;이벤트 리스너를 함수로 만들고, 각 엘리먼트의 이벤트 리스너에 동일한 함수를 전달&lt;/p&gt;
-
-&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;input&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;button&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;target1&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;value=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;button1&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;input&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;button&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;target2&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;value=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;button2&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;target1El&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getElementById&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'target1'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;target2El&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getElementById&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'target2'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-
-&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;btnListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;switch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'target1'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;alert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-      &lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'target2'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;alert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-      &lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;nx&quot;&gt;target1El&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;addEventListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'click'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;btnListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;target2El&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;addEventListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'click'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;btnListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;event-관련-메소드&quot;&gt;event 관련 메소드&lt;/h2&gt;
-&lt;h3 id=&quot;preventdefault&quot;&gt;preventDefault()&lt;/h3&gt;
-&lt;p&gt;기본으로 설정되어 있는 동작의 실행을 막음&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;submit을 클릭한 경우 preventDefault()로 기본 제출 동작을 막고 원하는 작업 수행 가능&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;stoppropagation&quot;&gt;stopPropagation()&lt;/h3&gt;
-&lt;p&gt;이벤트 버블링이나 캡쳐링으로 상/하위 태그로 전파되는 것을 막음&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;클릭한 태그와 관련된 동작만 수행할 수 있도록 함&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-&lt;h2 id=&quot;참고링크&quot;&gt;참고링크&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://developer.mozilla.org/ko/docs/Web/API/EventTarget/addEventListener&quot;&gt;MDN - EventTarget.addEventListener&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-        <pubDate>Tue, 26 Mar 2019 00:00:00 +0900</pubDate>
-        <link>http://devsoyoung.github.io//javascript/2019/03/26/js-event-basic.html</link>
-        <guid isPermaLink="true">http://devsoyoung.github.io//javascript/2019/03/26/js-event-basic.html</guid>
         
         
         <category>Javascript</category>
