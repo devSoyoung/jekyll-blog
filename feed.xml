@@ -5,9 +5,64 @@
     <description>프론트엔드 개발과 귀여운 것에 관심이 많습니다.</description>
     <link>http://devsoyoung.github.io//</link>
     <atom:link href="http://devsoyoung.github.io//feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 06 May 2019 15:11:51 +0900</pubDate>
-    <lastBuildDate>Mon, 06 May 2019 15:11:51 +0900</lastBuildDate>
+    <pubDate>Mon, 06 May 2019 15:33:30 +0900</pubDate>
+    <lastBuildDate>Mon, 06 May 2019 15:33:30 +0900</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
+    
+      <item>
+        <title>[HTML] 인코딩 설정 메타태그</title>
+        <description>&lt;p&gt;HTML 파일 한글 인코딩이 깨질 때, 인코딩 방식을 지정해주는 메타태그에 대해 정리한 글입니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;html-인코딩&quot;&gt;HTML 인코딩&lt;/h2&gt;
+&lt;p&gt;인코딩을 구글에 검색하면 다음과 같은 설명을 확인할 수 있다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;정보의 형태나 형식을 표준화, 보안, 처리 속도 향상, 저장 공간 절약 등을 위해서 다른 형태나 형식으로 변환하는 처리 혹은 그 처리 방식을 말한다. 즉, 컴퓨터가 이해할 수 있는 형식으로 바꾸어주는 것을 의미한다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;우리가 생성하는 파일도 다양한 방식으로 인코딩을 하는데, HTML 파일의 인코딩 방식과 브라우저의 인코딩 방식이 일치하지 않을 경우 문서의 글자가 깨져보이는 현상이 발생한다.&lt;/p&gt;
+
+&lt;p&gt;우리나라에서 사용하는 한글의 경우에도 그런 상황이 종종 발생한다. 이런 문제를 해결해주기 위해서, HTML 파일에 메타태그를 이용해서 파일의 인코딩 방식을 브라우저에게 알려주어야 한다.&lt;/p&gt;
+
+&lt;h2 id=&quot;한글-인코딩-방식&quot;&gt;한글 인코딩 방식&lt;/h2&gt;
+
+&lt;p&gt;한글의 대표적인 인코딩 방식에는 &lt;code class=&quot;highlighter-rouge&quot;&gt;euc-kr&lt;/code&gt;과 &lt;code class=&quot;highlighter-rouge&quot;&gt;utf-8&lt;/code&gt;이 있다.&lt;/p&gt;
+
+&lt;h3 id=&quot;euc-kr&quot;&gt;euc-kr&lt;/h3&gt;
+&lt;p&gt;1byte 길이의 &lt;code class=&quot;highlighter-rouge&quot;&gt;ASCII&lt;/code&gt; 인코딩 방식의 길이를 늘려 한글을 사용할 수 있도록 만든 2byte 길이의 국가 언어 코드이다. 이름에서 알 수 있듯이 한글만 사용이 가능하기 때문에, 다른 언어를 사용하는 환경에서는 정상 동작하지 않는다.&lt;/p&gt;
+
+&lt;h3 id=&quot;utf-8&quot;&gt;utf-8&lt;/h3&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;euc-kr&lt;/code&gt;의 다른 언어를 사용하는 환경에서의 동작문제를 해결할 수 있는 인코딩 방식이다. 3byte로 길이는 1byte 길지만, 다양한 언어를 지원하기 때문에 범용성이 좋다.&lt;/p&gt;
+
+&lt;p&gt;요즘에는 용량 문제보다 표준화 및 글로벌 환경을 고려하기 때문에 &lt;code class=&quot;highlighter-rouge&quot;&gt;utf-8&lt;/code&gt;을 선호한다.&lt;/p&gt;
+
+&lt;h2 id=&quot;meta-태그로-인코딩-방식-설정하기&quot;&gt;meta 태그로 인코딩 방식 설정하기&lt;/h2&gt;
+&lt;p&gt;HTML 문서의 &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;head&amp;gt;&lt;/code&gt; 태그 내에 아래와 같은 &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;meta&amp;gt;&lt;/code&gt; 태그를 삽입하면 된다.&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;charset=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;utf-8&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+        ...
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;HTML5 이전에는 &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=UTF-8&quot;&amp;gt;&lt;/code&gt;와 같이 복잡하게 적어야 했지만, 이제는 저렇게 간단하게 적을 수 있다 :)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;이렇게 설정을 해주었는데도 HTML 문서가 여전히 깨진다면 파일 저장할 때 인코딩 방식을 확인해보자. HTML 문서에는 브라우저에게 &lt;code class=&quot;highlighter-rouge&quot;&gt;utf-8&lt;/code&gt;로 인코딩하라고 알려주고 나는 다른 방식으로 인코딩하고 있었다면.. :(&lt;/p&gt;
+</description>
+        <pubDate>Mon, 06 May 2019 00:00:00 +0900</pubDate>
+        <link>http://devsoyoung.github.io//html/2019/05/06/html-encoding.html</link>
+        <guid isPermaLink="true">http://devsoyoung.github.io//html/2019/05/06/html-encoding.html</guid>
+        
+        
+        <category>HTML</category>
+        
+      </item>
     
       <item>
         <title>Webpack 초간단 정리</title>
@@ -1081,69 +1136,6 @@ d ㅋㅌ* minify(주석제거, 공백제거), obfuscation(변수명 변경), gzi
         
         
         <category>Javascript</category>
-        
-      </item>
-    
-      <item>
-        <title>[CSS] display 속성, inline과 block의 차이</title>
-        <description>&lt;p&gt;CSS의 주요속성 중 하나인 display 속성과, 속성값 중 inline과 block이 어떤 차이가 있는지 정리한 글입니다.&lt;/p&gt;
-
-&lt;h2 id=&quot;display-속성&quot;&gt;display 속성&lt;/h2&gt;
-&lt;p&gt;요소를 화면에 보이거나 숨길 때 사용한다.&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;visibility와의 차이 : visibility는 요소를 보일지 말지 결정, display는 보여지는 방법 결정&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;inline&quot;&gt;inline&lt;/h3&gt;
-&lt;p&gt;기본 값, 앞뒤로 줄바꿈되지 않는다.&lt;/p&gt;
-
-&lt;h3 id=&quot;block&quot;&gt;block&lt;/h3&gt;
-&lt;p&gt;요소 앞 뒤로 줄바꿈된다. (div는 block 요소)&lt;/p&gt;
-
-&lt;h3 id=&quot;none&quot;&gt;none&lt;/h3&gt;
-&lt;p&gt;박스가 생성되지 않으므로, 공간을 차지하지 않는다.&lt;/p&gt;
-
-&lt;h3 id=&quot;inline-block&quot;&gt;inline-block&lt;/h3&gt;
-&lt;p&gt;요소는 inline인데 내부는 block처럼 표시되고, 박스 모양이 inline처럼 옆으로 늘어선다.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;inline-요소와-block-요소&quot;&gt;inline 요소와 block 요소&lt;/h2&gt;
-&lt;p&gt;HTML 태그는 크게 inline요소와 block요소로 나뉘며 각 요소에 적용되는 CSS가 다르다.&lt;/p&gt;
-
-&lt;h3 id=&quot;inline-요소&quot;&gt;inline 요소&lt;/h3&gt;
-&lt;p&gt;항상 block 요소 안에 포함되며, 인라인 요소 안에 다른 인라인 요소 포함 가능하다.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;기본&lt;/strong&gt; : 컨텐츠가 끝나는 지점까지를 넓이로 가짐&lt;/li&gt;
-  &lt;li&gt;width, height로 임의로 변형을 줄 수 없음&lt;/li&gt;
-  &lt;li&gt;line-height로 줄간격을, text-align으로 텍스트 정렬을 설정 가능&lt;/li&gt;
-  &lt;li&gt;인라인 요소 다음에는 줄바꿈 없이 바로 이어서 보임&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;inline-요소-태그의-종류&quot;&gt;inline 요소 태그의 종류&lt;/h4&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;abbr&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;acronym&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;b&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;bdo&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;big&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;br&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;button&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;cite&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;code&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;dfn&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;em&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;i&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;img&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;input&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;kbd&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;label&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;map&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;object&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;q&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;samp&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;small&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;script&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;select&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;span&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;strong&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;sub&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;sup&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;textarea&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;tt&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;var&lt;/code&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;block-요소&quot;&gt;block 요소&lt;/h3&gt;
-&lt;p&gt;모든 inline요소를 포함할 수 있고, 다른 block 요소도 포함할 수 있다.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;기본&lt;/strong&gt; : 가로폭 전체의 넓이를 가지는 직사각형 형태&lt;/li&gt;
-  &lt;li&gt;블록요소 다음에는 줄바꿈이 이루어짐&lt;/li&gt;
-  &lt;li&gt;display: inline 설정으로 블록 요소를 인라인 요소로 변경할 수 있음&lt;/li&gt;
-  &lt;li&gt;block 요소에 text-align을 주면 요소 자체가 아닌, 내부의 모든 인라인 요소에 적용되는 것&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;block-요소-태그의-종류&quot;&gt;block 요소 태그의 종류&lt;/h4&gt;
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;address&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;article&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;aside&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;audio&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;blockquote&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;canvas&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;dd&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;div&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;dl&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;fieldset&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;figcaption&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;figure&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;footer&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;form&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;h1&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;h2&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;h3&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;h4&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;h5&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;h6&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;header&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;hgroup&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;hr&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;noscript&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;ol&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;output&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;p&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;pre&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;section&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;table&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;ul&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;video&lt;/code&gt;&lt;/p&gt;
-</description>
-        <pubDate>Tue, 26 Mar 2019 00:00:00 +0900</pubDate>
-        <link>http://devsoyoung.github.io//css/2019/03/26/css-display.html</link>
-        <guid isPermaLink="true">http://devsoyoung.github.io//css/2019/03/26/css-display.html</guid>
-        
-        
-        <category>CSS</category>
         
       </item>
     
