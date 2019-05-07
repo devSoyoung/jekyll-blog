@@ -366,11 +366,15 @@ a:hover {
     color: #111;
 }
 
+.post-content p {
+    margin: 1.5rem 0 1.5rem 0;
+}
+
 p, ul, ol, dl {
     -webkit-font-feature-settings: 'liga' 1, 'onum' 1, 'kern' 1;
     -moz-font-feature-settings: 'liga' 1, 'onum' 1, 'kern' 1;
     -o-font-feature-settings: 'liga' 1, 'onum' 1, 'kern' 1;
-    margin: 0 0 1.2rem 0;
+    margin: 0 0 1rem 0;
     line-height: 3rem;
     letter-spacing: -0.5px;
 }
@@ -1574,7 +1578,7 @@ body:not(.post-template) .post-title {
     }
 
     hr {
-        margin: 2.4em 0;
+        margin: 1.5em 0;
     }
 
     ol, ul {

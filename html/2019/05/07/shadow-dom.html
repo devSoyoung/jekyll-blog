@@ -61,7 +61,9 @@
 
 <h2 id="shadow-dom의-필요성">Shadow DOM의 필요성</h2>
 <h3 id="global로-모든-것을-공유하는-dom">global로 모든 것을 공유하는 DOM</h3>
-<p>HTML 문서의 모든 요소와 스타일로 구성되어 있는 DOM은 하나의 global 범위 내에 존재한다. 그렇기 때문에, 모든 Element는 document 객체의 <code class="highlighter-rouge">querySelector()</code> 메서드로 접근할 수 있다. CSS 또한 document 내의 모든 해당 엘리먼트에 적용된다. 이처럼 global 영역으로 되어있는 것이 문서에 일괄적으로 무언가를 적용하기 매우 편리하게 해준다.</p>
+<p>HTML 문서의 모든 요소와 스타일로 구성되어 있는 DOM은 하나의 global 범위 내에 존재한다. 그렇기 때문에, 모든 Element는 document 객체의 <code class="highlighter-rouge">querySelector()</code> 메서드로 접근할 수 있다. CSS 또한 document 내의 모든 해당하는 엘리먼트에 적용된다.</p>
+
+<p>이처럼 DOM이 global 영역으로 공유하는 것은 문서에 <strong>일괄적으로 무언가를 적용</strong>하기 매우 편리하게 해준다.</p>
 
 <p>하지만, 글로벌 스타일에 영향을 받지 않는 독립적인 요소를 만들 수 없다는 점에서 불편하다. 외부의 것을 가져왔을 때 기존의 스타일에 현재 DOM의 스타일이 덮어씌워지기 때문에 원치 않는 스타일이 적용될 수 있다.</p>
 
@@ -154,7 +156,7 @@
 <hr />
 <h2 id="참고링크">참고링크</h2>
 <ul>
-  <li><a href="[https://wit.nts-corp.com/2019/03/27/5552](https://wit.nts-corp.com/2019/03/27/5552)">(번역) Shadow DOM은 무엇일까?</a></li>
+  <li><a href="https://wit.nts-corp.com/2019/03/27/5552">(번역) Shadow DOM은 무엇일까?</a></li>
   <li><a href="https://kyu.io/ko/%EC%9B%B9-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B83%E2%80%8A-%E2%80%8A%EC%89%90%EB%8F%84%EC%9A%B0-%EB%8F%94shadow-dom/">웹 컴포넌트(3) — 쉐도우 돔(#SHADOW DOM)</a></li>
 </ul>
 
