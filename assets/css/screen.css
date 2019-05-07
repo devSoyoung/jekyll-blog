@@ -898,13 +898,15 @@ h2.page-description {
 body:not(.post-template) .post-title {
     font-size: 3rem;
     padding-top: 10px;
+    font-weight: 600;
 }
 
 .post-title a {
     text-decoration: none;
     padding-bottom: 3px;
     letter-spacing: -2px;
-    font-size: 3.2rem;
+    font-size: 3.1rem;
+    font-weight: 600;
 }
 
 .post-title a:hover {
@@ -914,9 +916,9 @@ body:not(.post-template) .post-title {
 
 .post-excerpt p {
     margin: 0;
-    font-size: 0.9em;
+    font-size: 0.95em;
     line-height: 1.7em;
-    letter-spacing: -1px;
+    letter-spacing: -0.7px;
     font-family: 'Iropke Batang', Sans-serif;
 }
 
@@ -1091,7 +1093,7 @@ body:not(.post-template) .post-title {
 
 .post-footer p {
     margin: 1rem 0;
-    font-size: 1.4rem;
+    font-size: 1.5crem;
     line-height: 1.75em;
     font-family: 'Iropke Batang', Sans-serif;
 }
