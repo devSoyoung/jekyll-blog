@@ -5,9 +5,188 @@
     <description>프론트엔드 개발과 귀여운 것에 관심이 많습니다.</description>
     <link>https://devsoyoung.github.io//</link>
     <atom:link href="https://devsoyoung.github.io//feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 07 May 2019 23:22:12 +0900</pubDate>
-    <lastBuildDate>Tue, 07 May 2019 23:22:12 +0900</lastBuildDate>
+    <pubDate>Sat, 11 May 2019 20:13:48 +0900</pubDate>
+    <lastBuildDate>Sat, 11 May 2019 20:13:48 +0900</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
+    
+      <item>
+        <title>[Node.js] Koa 프레임워크 시작하기</title>
+        <description>&lt;p&gt;Node.js의 대표적인 프레임워크 중 하나인 Koa에 대해서 간단하게 정리한 글입니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;what-is-koa-framework&quot;&gt;What is Koa framework?&lt;/h2&gt;
+&lt;p&gt;Koa 대표적인 Node.js의 프레임워크인 Express를 만든 팀이 제작한 웹 프레임워크입니다. Express보다 더 작고, 더 표현적이고, 더 튼튼한 기초가 되는 것을 목표로 제작되었다고 합니다. &lt;a href=&quot;https://koajs.com/&quot;&gt;[공식사이트 바로가기]&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;koa-설치하기&quot;&gt;Koa 설치하기&lt;/h2&gt;
+
+&lt;p&gt;Koa는 비동기 처리를 위해 자바스크립트 최신 문법인 async/await를 사용하기 때문에, ES6 이상을 지원하는 node 버전 7.6.0 이상이 필요합니다.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ nvm install 7
+$ npm i koa
+$ node my-koa-app.js
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;이렇게 하면, &lt;code class=&quot;highlighter-rouge&quot;&gt;my-koa-app.js&lt;/code&gt; 를 실행할 수 있습니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;hello-world&quot;&gt;Hello, world!&lt;/h2&gt;
+&lt;p&gt;간단한 Hello, World 앱으로 Koa 프레임워크의 기능을 확인해봅시다.&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// my-koa-app.js&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Koa&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'koa'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Koa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;use&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ctx&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;body&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Hello, World!'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;listen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Connect!'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Koa 프레임워크를 &lt;code class=&quot;highlighter-rouge&quot;&gt;require()&lt;/code&gt;로 가져온 후, app을 생성합니다. &lt;code class=&quot;highlighter-rouge&quot;&gt;use()&lt;/code&gt;로 앱이 실행되었을 때 동작(Hello, world 출력)을 지정해준 후 &lt;code class=&quot;highlighter-rouge&quot;&gt;listen()&lt;/code&gt;을 실행해 3000번 포트로 서버를 동작시킵니다. 콜백을 전달해서 서버가 실행된 후 동작을 지정해줄 수도 있습니다. 여기에서는 console에 로그를 찍는 동작을 수행해 보았습니다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;다른 사용 중인 애플리케이션과 겹치지 않는 포트를 쓰면 됩니다. 일반적으로 개발할 때 3000번 포트를 많이 사용하기 때문에 여기에서도 관례적으로(?) 3000번 포트를 사용했습니다. 이미 3000번 포트를 사용중이라면 3001, 3002 등 다른 포트를 사용해도 됩니다. (사실 저 코드는 공식 문서에서 가져왔습니다. :P)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;이렇게 하고 &lt;code class=&quot;highlighter-rouge&quot;&gt;node my-koa-app.js&lt;/code&gt;를 실행하면 console에는 ‘Connect!’라는 메세지가 뜹니다. localhost의 3000번 포트로 접속하면 ‘Hello, World!’ 메세지도 확인할 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;이 코드에서 우리는 &lt;code class=&quot;highlighter-rouge&quot;&gt;use()&lt;/code&gt;를 눈여겨보아야 합니다. 미들웨어라는 중요한 개념이 등장하기 때문입니다.&lt;/p&gt;
+
+&lt;h3 id=&quot;middleware&quot;&gt;Middleware&lt;/h3&gt;
+
+&lt;p&gt;Koa는 여러 미들웨어가 연결되어 구성됩니다. &lt;code class=&quot;highlighter-rouge&quot;&gt;app.use()&lt;/code&gt;를 통해 사용할 미들웨어를 애플리케이션에 등록해줄 수 있습니다. &lt;code class=&quot;highlighter-rouge&quot;&gt;use()&lt;/code&gt;의 파라미터로 넘겨준 미들웨어 함수는 &lt;code class=&quot;highlighter-rouge&quot;&gt;ctx&lt;/code&gt;와 &lt;code class=&quot;highlighter-rouge&quot;&gt;next&lt;/code&gt;를 전달받습니다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ctx&lt;/code&gt; : 웹 요청과 응답에 대한 정보를 저장&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;next&lt;/code&gt; : 다음 미들웨어를 실행시키는 함수&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;미들웨어에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;next&lt;/code&gt;를 실행하게 되면 다음 미들웨어로 전달되고, 실행하지 않으면 해당 미들웨어에서 요청 처리를 완료하고 응답하게 됩니다. 미들웨어는 등록한 순서대로 실행됩니다. 아래 예제를 확인하면 더 쉽게 이해할 수 있습니다.&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Koa&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'koa'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Koa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;use&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'middleware 1'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;use&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'middleware 2'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;use&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'middleware 3'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;listen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Connect!'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;이렇게 미들웨어를 여러 개 연결해서 3000번 포트로 접속하면 1, 2번 미들웨어가 순차적으로 실행되는 것을 알 수 있습니다.&lt;/p&gt;
+
+&lt;h3 id=&quot;next&quot;&gt;next()&lt;/h3&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;next()&lt;/code&gt;는 프로미스를 반환합니다. 그래서 다음 미들웨어가 실행이 끝난 후 동작을 지정해줄 수 있습니다. 아래 코드를 보면서 확인해봅시다.&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Koa&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'koa'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Koa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;use&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'--- middleware 1 ---'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;body&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Hello, World!'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;middleware 1's body:&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Body Message Changed!&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;use&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'--- middleware 2 ---'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;body&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Goodbye, World!'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;middleware 2's body:&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;listen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// 실행결과
+--- middleware 1 ---
+middleware 1's body: Hello, World!
+--- middleware 2 ---
+middleware 2's body: Goodbye, World!
+Body Message Changed!
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;이렇게 하면 처음에는 ‘Hello, World!’로 메세지가 지정되고, 이후에는 ‘Goodbye, World!’로 메세지가 지정됩니다. 두 번째 미들웨어가 끝난 후에 콘솔에는 ‘Body Message Changed!’가 출력됩니다.&lt;/p&gt;
+
+&lt;p&gt;ES7에서 추가된 async/await 문법을 사용하면 콜백을 없앨 수 있습니다.&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Koa&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'koa'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Koa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;use&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'--- middleware 1 ---'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;body&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Hello, World!'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;middleware 1's body:&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+    &lt;span class=&quot;kr&quot;&gt;await&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Body Message Changed!&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;use&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'--- middleware 2 ---'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;body&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Goodbye, World!'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;middleware 2's body:&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;listen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;동일한 코드를 async/await으로 수정한 결과입니다. 마찬가지로 잘 동작합니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;nodemon으로-자동-서버-재시작&quot;&gt;nodemon으로 자동 서버 재시작&lt;/h2&gt;
+&lt;p&gt;지금까지의 내용을 수행하면서 코드를 수정하면 바뀐 내용을 적용하기 위해서 실행중이던 node 서버를 종료하고 다시 실행해야 했습니다. 한두번은 괜찮았지만 반복할수록 귀찮음과 짜증이 증가합니다. &lt;strong&gt;nodemon&lt;/strong&gt; 사용하면 수정을 감지해서 자동으로 서버를 재실행시켜줍니다.&lt;/p&gt;
+
+&lt;p&gt;먼저, nodemon을 설치해봅니다.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ npm install -g nodemon
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;다른 프로젝트에서도 nodemon을 사용할 수 있도록 global로 설치했습니다. 이 프로젝트에서만 사용하고 싶다면, global 옵션 없이 설치하면 됩니다.&lt;/p&gt;
+
+&lt;p&gt;아래 명령어를 입력하면 &lt;code class=&quot;highlighter-rouge&quot;&gt;helloWorld.js&lt;/code&gt; 파일이 수정될 때마다 알아서 서버를 재실행해줍니다.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ nodemon helloWorld.js
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;일반적으로 프로젝트 구조를 잡을 때 src 파일 안에 Javascript 코드를 관리하므로 src 폴더를 만들고, 그 안에 &lt;code class=&quot;highlighter-rouge&quot;&gt;index.js&lt;/code&gt; 파일을 생성합시다. 그리고나서 아래 명령어를 다시 실행해봅니다. (&lt;code class=&quot;highlighter-rouge&quot;&gt;index.js&lt;/code&gt; 파일 안에는 아까 &lt;code class=&quot;highlighter-rouge&quot;&gt;helloWorld.js&lt;/code&gt;에 작성한 코드를 옮겨서 실행했습니다.)&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ nodemon --watch src/ src/index.js 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;index.js 파일을 수정하면 서버가 재실행됩니다. src 폴더 내에 새로운 파일을 추가해도 서버가 재실행됩니다. &lt;code class=&quot;highlighter-rouge&quot;&gt;src&lt;/code&gt; 디렉토리의 모든 변화를 감지하기 때문에 그렇습니다.&lt;/p&gt;
+
+&lt;p&gt;이 명령어를 매번 개발을 시작할때마다 치면 귀찮기 때문에, &lt;code class=&quot;highlighter-rouge&quot;&gt;package.json&lt;/code&gt; 파일에 script를 추가해줍시다.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&quot;scripts&quot;: {
+    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;amp;&amp;amp; exit 1&quot;,
+    &quot;start&quot;: &quot;nodemon --watch src/ src/index.js&quot;
+},
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;package.json&lt;/code&gt; 파일의 &lt;strong&gt;scripts&lt;/strong&gt;에 “start”를 추가하고 아까 입력한 명령어를 입력해줍니다. 그리고 터미널에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;npm run start&lt;/code&gt;를 입력하면 동일하게 동작하는 것을 확인할 수 있습니다.&lt;/p&gt;
+</description>
+        <pubDate>Sat, 11 May 2019 00:00:00 +0900</pubDate>
+        <link>https://devsoyoung.github.io//node.js/2019/05/11/koa-api-tutorial.html</link>
+        <guid isPermaLink="true">https://devsoyoung.github.io//node.js/2019/05/11/koa-api-tutorial.html</guid>
+        
+        
+        <category>Node.js</category>
+        
+      </item>
     
       <item>
         <title>[HTML] Shadow DOM 개념, 사용방법</title>
@@ -976,12 +1155,12 @@ d ㅋㅌ* minify(주석제거, 공백제거), obfuscation(변수명 변경), gzi
 
 &lt;h2 id=&quot;타이머-함수의-활용&quot;&gt;타이머 함수의 활용&lt;/h2&gt;
 &lt;ol&gt;
-  &lt;li&gt;특정 함수나 기능을 바로 실행하지 않고, 약간의 시간이 지난 후에 실행하고 싶을 때
+  &lt;li&gt;특정 함수나 기능을 바로 실행하지 않고, 약간의 &lt;strong&gt;시간이 지난 후에 실행&lt;/strong&gt;하고 싶을 때
     &lt;ul&gt;
       &lt;li&gt;어떤 정보를 표시한 후, 몇 초 뒤에 다른 페이지로 이동&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;특정 함수를 지속적으로 반복 실행하고 싶을 때
+  &lt;li&gt;특정 함수를 지속적으로 &lt;strong&gt;반복 실행&lt;/strong&gt;하고 싶을 때
     &lt;ul&gt;
       &lt;li&gt;특정 시간마다 화면을 갱신하기 위해서 서버에 새로운 정보를 요청&lt;/li&gt;
       &lt;li&gt;남은 로그인 유지 시간 표시&lt;/li&gt;
@@ -1005,6 +1184,7 @@ d ㅋㅌ* minify(주석제거, 공백제거), obfuscation(변수명 변경), gzi
 
 &lt;ul&gt;
   &lt;li&gt;setInterval은 &lt;code class=&quot;highlighter-rouge&quot;&gt;timerId&lt;/code&gt;를 반환하므로, 이를 활용해서 clearInterval로 반복을 멈출 수 있음&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;timerId&lt;/code&gt;는 int 값&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h3 id=&quot;clearinterval로-반복-취소하기&quot;&gt;clearInterval로 반복 취소하기&lt;/h3&gt;
@@ -1013,6 +1193,10 @@ d ㅋㅌ* minify(주석제거, 공백제거), obfuscation(변수명 변경), gzi
 &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;정지할&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;조건&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;clearInterval&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;timerId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;간혹 &lt;code class=&quot;highlighter-rouge&quot;&gt;clearInterval&lt;/code&gt;이 작동하지 않는 경우가 있는데, 그럴 때는 넘겨준 타이머 값을 콘솔에 찍어서 일치하는지 확인해보자.&lt;/p&gt;
+&lt;/blockquote&gt;
 
 &lt;h2 id=&quot;settimeout&quot;&gt;setTimeout&lt;/h2&gt;
 
@@ -1036,120 +1220,6 @@ d ㅋㅌ* minify(주석제거, 공백제거), obfuscation(변수명 변경), gzi
         <pubDate>Tue, 26 Mar 2019 00:00:00 +0900</pubDate>
         <link>https://devsoyoung.github.io//javascript/2019/03/26/js-timer.html</link>
         <guid isPermaLink="true">https://devsoyoung.github.io//javascript/2019/03/26/js-timer.html</guid>
-        
-        
-        <category>Javascript</category>
-        
-      </item>
-    
-      <item>
-        <title>[JS] HTMLCollection과 NodeList의 공통점, 차이점</title>
-        <description>&lt;p&gt;Javascript의 Element Collection인 HTMLCollection과 NodeList의 공통점, 차이점을 정리한 글입니다.&lt;/p&gt;
-
-&lt;h2 id=&quot;공통점과-차이점-요약&quot;&gt;공통점과 차이점 요약&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;공통점&lt;/strong&gt; : DOM nodes의 모음&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;차이점&lt;/strong&gt; : 제공하는 메소드, 포함하고 있는 돔 노드의 타입이 다름
-    &lt;ul&gt;
-      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;NodeList&lt;/code&gt; : 모든 타입의 노드를 다 가질 수 있지만&lt;/li&gt;
-      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;HTMLCollection&lt;/code&gt; : element 노드만 가질 수 있음&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;htmlcollection&quot;&gt;&lt;a href=&quot;https://developer.mozilla.org/ko/docs/Web/API/HTMLCollection&quot;&gt;HTMLCollection&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;요소(elements)의 일반적인 모음을 나타냄(유사배열)&lt;/p&gt;
-&lt;h3 id=&quot;속성&quot;&gt;속성&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;.length&lt;/code&gt; : 컬렉션 항목의 갯수를 반환&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;.[이름명]&lt;/code&gt; : 노드 목록 중 해당 이름을 가진 요소를 바로 참조할 수 있음(&lt;code class=&quot;highlighter-rouge&quot;&gt;-&lt;/code&gt;가 이름 중간에 있는 경우는 불가능)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;메서드&quot;&gt;메서드&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;.item()&lt;/code&gt; : 파라미터로 받은 인덱스의 노드를 반환하며, 범위를 벗어난 인덱스인 경우 null을 반환&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;.namedItem()&lt;/code&gt; : 파라미터로 받은 문자열과 일치하는 이름의 노드를 반환하며, 해당 이름을 가진 노드가 없는 경우 null을 반환&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;주의사항&quot;&gt;주의사항&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;순수 숫자로 된 id를 인식할 수 없음
-    &lt;ul&gt;
-      &lt;li&gt;HTML5에서는 허용하지만, 배열 형식의 접근과 충돌할 수 있어서 HTMLCollection에서는 지원하지 않음&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;멤버(노드 목록)을 이름(&lt;code class=&quot;highlighter-rouge&quot;&gt;.name&lt;/code&gt;)과 인덱스(&lt;code class=&quot;highlighter-rouge&quot;&gt;.item()&lt;/code&gt;)로 직접 노출함&lt;/li&gt;
-  &lt;li&gt;HTML ID는 유효한 문자로 &lt;strong&gt;:&lt;/strong&gt; 와 &lt;strong&gt;.&lt;/strong&gt; 을 포함할 수 있는데, 속성에 접근하기 위해서는 대괄호 표기법을 사용&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;elem1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;elem2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// document.forms은 HTMLCollection이다.&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;elem1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;forms&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;elem2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;forms&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-
-&lt;span class=&quot;nx&quot;&gt;alert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;elem1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;elem2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// &quot;true&quot;&lt;/span&gt;
-
-&lt;span class=&quot;nx&quot;&gt;elem1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;forms&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;myForm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;elem2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;forms&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;namedItem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;myForm&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-
-&lt;span class=&quot;nx&quot;&gt;alert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;elem1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;elem2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// &quot;true&quot;&lt;/span&gt;
-
-&lt;span class=&quot;nx&quot;&gt;elem1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;forms&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;named.item.with.periods&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;nodelist&quot;&gt;&lt;a href=&quot;https://developer.mozilla.org/ko/docs/Web/API/NodeList&quot;&gt;NodeList&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;element.childNodes&lt;/code&gt; 속성, &lt;code class=&quot;highlighter-rouge&quot;&gt;document.querySelectorAll&lt;/code&gt; 메서드로 반환되는 노드의 모음&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;유사배열이지만 &lt;code class=&quot;highlighter-rouge&quot;&gt;.forEach()&lt;/code&gt;를 사용하여 반복할 수 있고 &lt;code class=&quot;highlighter-rouge&quot;&gt;Array.from()&lt;/code&gt;으로 배열로 변환할 수도 있음
-    &lt;ul&gt;
-      &lt;li&gt;일부 구형 브라우저의 경우 지원하지 않으며, &lt;code class=&quot;highlighter-rouge&quot;&gt;Array.prototype.forEach()&lt;/code&gt;를 사용하면 됨&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;속성-1&quot;&gt;속성&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;.length&lt;/code&gt; : NodeList의 갯수를 반환&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;메서드-1&quot;&gt;메서드&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;.item()&lt;/code&gt; : 파라미터로 받은 인덱스의 노드를 반환하며, 범위를 벗어난 인덱스인 경우 null을 반환&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;.entries()&lt;/code&gt; : iterator를 반환하여 모든 키(index)/값(node) 쌍을 순회할 수 있도록 함&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;.forEach()&lt;/code&gt; : 요소(element)마다 한 번씩, 인자로 전달 받은 함수를 실행하여 요소를 인수(argument)로 함수에 전달&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;.keys()&lt;/code&gt; : 콜렉션에 포함된 모든 키(unsigned int)를 통과할 수 있는 iterator 를 반환 (&lt;em&gt;왜 쓰는지 모르겠음&lt;/em&gt;)&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;.values()&lt;/code&gt; : 콜렉션에 포함된 모든 값(node)를 통과할 수 있는 iterator를 반환 (&lt;em&gt;왜 쓰는지 모르겠음&lt;/em&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;주의사항-1&quot;&gt;주의사항&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Node.childNodes&lt;/code&gt;의 NodeList는 라이브 콜렉션으로, DOM의 변경사항을 실시간으로 반영함&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;document.querySelectorAll()&lt;/code&gt;의 NodeList는 정적 콜렉션으로, DOM이 변경되어도 collection의 내용에는 영향을 주지 않음&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;staticNList&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;querySelectorAll&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'div'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;dynamicNList&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;childNodes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// &amp;gt; dynamicNList&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// NodeList(33) [text, script, text, ul#nav-access, text, comment, text, header#main-header.header-main, ...]&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// &amp;gt; staticNList&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// NodeList(52) [div.nav-toolbox-wrapper, div#nav-tech-submenu.submenu.js-submenu, div.submenu-column, div#nav-learn-submenu.submenu.js-submenu, ...]&lt;/span&gt;
-
-&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;createElement&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'div'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;appendChild&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;div&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// &amp;gt; dynamicNList&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// NodeList(34) [text, script, text, ul#nav-access, text, comment, text, header#main-header.header-main, ...]&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// &amp;gt; staticNList&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// NodeList(52) [div.nav-toolbox-wrapper, div#nav-tech-submenu.submenu.js-submenu, div.submenu-column, div#nav-learn-submenu.submenu.js-submenu, ...]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-</description>
-        <pubDate>Tue, 26 Mar 2019 00:00:00 +0900</pubDate>
-        <link>https://devsoyoung.github.io//javascript/2019/03/26/js-htmlcollection-nodelist.html</link>
-        <guid isPermaLink="true">https://devsoyoung.github.io//javascript/2019/03/26/js-htmlcollection-nodelist.html</guid>
         
         
         <category>Javascript</category>
