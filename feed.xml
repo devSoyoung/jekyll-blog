@@ -5,9 +5,214 @@
     <description>프론트엔드 개발과 귀여운 것에 관심이 많습니다.</description>
     <link>https://devsoyoung.github.io//</link>
     <atom:link href="https://devsoyoung.github.io//feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 11 May 2019 20:13:48 +0900</pubDate>
-    <lastBuildDate>Sat, 11 May 2019 20:13:48 +0900</lastBuildDate>
+    <pubDate>Sat, 08 Jun 2019 18:04:58 +0900</pubDate>
+    <lastBuildDate>Sat, 08 Jun 2019 18:04:58 +0900</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
+    
+      <item>
+        <title>[React] Typescript로 react 프로젝트 생성하기</title>
+        <description>&lt;p&gt;React 프로젝트를 생성하기 위해서는 webpack 설정 등 사전 작업이 필요합니다. 하지만 페이스북에서 만든 &lt;code class=&quot;highlighter-rouge&quot;&gt;create-react-app&lt;/code&gt;을 사용하면 손쉽게 설정이 완료된 리액트 프로젝트를 생성할 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;최근에는 많은 리액트 프로젝트들이 타입스크립트를 적용하고 있습니다. 타입스크립트는 자바스크립트에 타입을 강제하는 언어입니다. 타입스크립트로 개발을 한 후, 자바스크립트로 빌드하는 방식인데, 타입을 지정함으로써 얻는 다양한 이점으로 인해 활용이 늘어가는 추세입니다.&lt;/p&gt;
+
+&lt;p&gt;저도 개인 프로젝트를 진행하면서, 타입스크립트를 적용해보려고 했습니다. 기존의 리액트 프로젝트를 생성하는 방식으로 하면 타입스크립트를 위한 설정을 추가적으로 해주어야 합니다. 초기에 프로젝트를 생성할 때, 옵션을 주면 손쉽게 타입스크립트가 적용된 프로젝트를 생성할 수 있습니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;프로젝트-생성하기&quot;&gt;프로젝트 생성하기&lt;/h2&gt;
+&lt;p&gt;먼저, npm으로 &lt;code class=&quot;highlighter-rouge&quot;&gt;create-react-app&lt;/code&gt;을 설치합니다.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;npm install -g create-react-app
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;-g는 전역으로 설치하겠다는 의미입니다. 현재 위치에서만 사용하려면, -g 옵션을 제외하고 설치하면 됩니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;이제, 타입스크립트가 적용된 프로젝트를 다음 명령어로 생성합니다.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;create-react-app ts-app --scripts-version=react-scripts-ts
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;새로 생긴 &lt;code class=&quot;highlighter-rouge&quot;&gt;ts-app&lt;/code&gt; 디렉토리에 타입스크립트 리액트 프로젝트가 만들어집니다.
+더 짧은 명령어도 있습니다.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;create-react-app ts-app --typescript
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;두 방식에 어떤 차이가 있는지 궁금해서 각각의 방식으로 생성 후 만들어진 결과물을 비교해보았습니다.&lt;/p&gt;
+
+&lt;h3 id=&quot;scripts-version-방식&quot;&gt;—scripts-version 방식&lt;/h3&gt;
+&lt;p&gt;첫 번째 방식으로 생성한 경우, 아래와 같은 &lt;code class=&quot;highlighter-rouge&quot;&gt;package.json&lt;/code&gt;이 생성됩니다.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{
+  &quot;name&quot;: &quot;typescript-react-app&quot;,
+  &quot;version&quot;: &quot;0.1.0&quot;,
+  &quot;private&quot;: *true*,
+  &quot;dependencies&quot;: {
+    &quot;react&quot;: &quot;^16.8.6&quot;,
+    &quot;react-dom&quot;: &quot;^16.8.6&quot;,
+    &quot;react-scripts-ts&quot;: &quot;3.1.0&quot;
+  },
+  &quot;scripts&quot;: {
+    &quot;start&quot;: &quot;react-scripts-ts start&quot;,
+    &quot;build&quot;: &quot;react-scripts-ts build&quot;,
+    &quot;test&quot;: &quot;react-scripts-ts test --env=jsdom&quot;,
+    &quot;eject&quot;: &quot;react-scripts-ts eject&quot;
+  },
+  &quot;devDependencies&quot;: {
+    &quot;@types/jest&quot;: &quot;^24.0.13&quot;,
+    &quot;@types/node&quot;: &quot;^12.0.7&quot;,
+    &quot;@types/react&quot;: &quot;^16.8.19&quot;,
+    &quot;@types/react-dom&quot;: &quot;^16.8.4&quot;,
+    &quot;typescript&quot;: &quot;^3.5.1&quot;
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;typescript와 관련된 라이브러리가 &lt;code class=&quot;highlighter-rouge&quot;&gt;devDependencies&lt;/code&gt;에 포함됩니다. 그리고, &lt;code class=&quot;highlighter-rouge&quot;&gt;react-scripts&lt;/code&gt; 대신 옵션으로 준,  &lt;code class=&quot;highlighter-rouge&quot;&gt;react-scripts-ts&lt;/code&gt;가 설치됩니다.&lt;/p&gt;
+
+&lt;p&gt;프로젝트에 tslint 설정파일과 &lt;code class=&quot;highlighter-rouge&quot;&gt;tsconfig.json&lt;/code&gt;이 생성되고, 자바스크립트로 생성한 프로젝트의 &lt;code class=&quot;highlighter-rouge&quot;&gt;package.json&lt;/code&gt;에 있는 &lt;code class=&quot;highlighter-rouge&quot;&gt;browserslist&lt;/code&gt; 관련 설정은 없습니다.&lt;/p&gt;
+
+&lt;h3 id=&quot;typescript-방식&quot;&gt;—typescript 방식&lt;/h3&gt;
+&lt;p&gt;typescript 옵션을 준 경우, 아래와 같은 &lt;code class=&quot;highlighter-rouge&quot;&gt;package.json&lt;/code&gt;이 생성됩니다.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{
+  &quot;name&quot;: &quot;ts-app&quot;,
+  &quot;version&quot;: &quot;0.1.0&quot;,
+  &quot;private&quot;: *true*,
+  &quot;dependencies&quot;: {
+    &quot;@types/jest&quot;: &quot;24.0.13&quot;,
+    &quot;@types/node&quot;: &quot;12.0.7&quot;,
+    &quot;@types/react&quot;: &quot;16.8.19&quot;,
+    &quot;@types/react-dom&quot;: &quot;16.8.4&quot;,
+    &quot;react&quot;: &quot;^16.8.6&quot;,
+    &quot;react-dom&quot;: &quot;^16.8.6&quot;,
+    &quot;react-scripts&quot;: &quot;3.0.1&quot;,
+    &quot;typescript&quot;: &quot;3.5.1&quot;
+  },
+  &quot;scripts&quot;: {
+    &quot;start&quot;: &quot;react-scripts start&quot;,
+    &quot;build&quot;: &quot;react-scripts build&quot;,
+    &quot;test&quot;: &quot;react-scripts test&quot;,
+    &quot;eject&quot;: &quot;react-scripts eject&quot;
+  },
+  &quot;eslintConfig&quot;: {
+    &quot;extends&quot;: &quot;react-app&quot;
+  },
+  &quot;browserslist&quot;: {
+    &quot;production&quot;: [
+      &quot;&amp;gt;0.2%&quot;,
+      &quot;not dead&quot;,
+      &quot;not op_mini all&quot;
+    ],
+    &quot;development&quot;: [
+      &quot;last 1 chrome version&quot;,
+      &quot;last 1 firefox version&quot;,
+      &quot;last 1 safari version&quot;
+    ]
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;자바스크립트로 생성한 프로젝트에 타입스크립트 관련 모듈이 추가된 형태입니다. &lt;code class=&quot;highlighter-rouge&quot;&gt;devDependencies&lt;/code&gt; 대신 &lt;code class=&quot;highlighter-rouge&quot;&gt;dependencies&lt;/code&gt;에 추가됩니다. tslint 설정파일도 생성되지 않습니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;자바스크립트로-생성한-리액트-프로젝트&quot;&gt;자바스크립트로 생성한 리액트 프로젝트&lt;/h2&gt;
+&lt;p&gt;아무런 옵션 없이 프로젝트를 생성했을 때에는 다음과 같은 &lt;code class=&quot;highlighter-rouge&quot;&gt;package.json&lt;/code&gt;이 생성됩니다.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{
+  &quot;name&quot;: &quot;js-app&quot;,
+  &quot;version&quot;: &quot;0.1.0&quot;,
+  &quot;private&quot;: *true*,
+  &quot;dependencies&quot;: {
+    &quot;react&quot;: &quot;^16.8.6&quot;,
+    &quot;react-dom&quot;: &quot;^16.8.6&quot;,
+    &quot;react-scripts&quot;: &quot;3.0.1&quot;
+  },
+  &quot;scripts&quot;: {
+    &quot;start&quot;: &quot;react-scripts start&quot;,
+    &quot;build&quot;: &quot;react-scripts build&quot;,
+    &quot;test&quot;: &quot;react-scripts test&quot;,
+    &quot;eject&quot;: &quot;react-scripts eject&quot;
+  },
+  &quot;eslintConfig&quot;: {
+    &quot;extends&quot;: &quot;react-app&quot;
+  },
+  &quot;browserslist&quot;: {
+    &quot;production&quot;: [
+      &quot;&amp;gt;0.2%&quot;,
+      &quot;not dead&quot;,
+      &quot;not op_mini all&quot;
+    ],
+    &quot;development&quot;: [
+      &quot;last 1 chrome version&quot;,
+      &quot;last 1 firefox version&quot;,
+      &quot;last 1 safari version&quot;
+    ]
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;—typescript&lt;/code&gt; 방식과 비슷합니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;글을-마무리하며&quot;&gt;글을 마무리하며&lt;/h2&gt;
+&lt;p&gt;두 방식에 큰 차이가 없어 편안한 방식이나 원하는 결과물을 내는 방식을 선택해서 사용하면 될 것 같습니다. 이제 타입스크립트를 적용한 프로젝트를 만들어보며 타입스크립트의 장점을 몸소 느껴봐야겠습니다 :)&lt;/p&gt;
+</description>
+        <pubDate>Sat, 08 Jun 2019 00:00:00 +0900</pubDate>
+        <link>https://devsoyoung.github.io//react/2019/06/08/typescript-react-app.html</link>
+        <guid isPermaLink="true">https://devsoyoung.github.io//react/2019/06/08/typescript-react-app.html</guid>
+        
+        
+        <category>React</category>
+        
+      </item>
+    
+      <item>
+        <title>[Node.js] koa-router 사용하기</title>
+        <description>&lt;p&gt;지난 글 &lt;a href=&quot;https://devsoyoung.github.io/node.js/2019/05/11/koa-api-tutorial.html&quot;&gt;Koa 프레임워크 시작하기&lt;/a&gt;에 이어서 koa-router에 대해 정리한 글입니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;koa-router&quot;&gt;koa-router&lt;/h2&gt;
+
+&lt;p&gt;API 엔드포인트를 정의하기 위해서 koa-router를 사용합니다. 요청 URI에 따라서 다른 작업을 수행할 수 있도록 해주는 것입니다. Koa 프레임워크에 내장되어 있지 않기 때문에, 별도로 설치해주어야 합니다.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ npm i koa-router
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;koa-router-사용하기&quot;&gt;koa-router 사용하기&lt;/h2&gt;
+
+&lt;p&gt;koa-router도 하나의 미들웨어로 app에 연결해서 사용할 것입니다. 아래와 같이 &lt;code class=&quot;highlighter-rouge&quot;&gt;index.js&lt;/code&gt; 파일을 만들어봅니다.&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Koa&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'koa'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Router&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'koa-router'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;router&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Router&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Koa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;router&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'/'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;body&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Home'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;router&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'/hello'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;body&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Hello, World!'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;use&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;router&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;routes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;use&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;router&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;allowedMethods&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;listen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'server is listening to port 3000'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;이렇게 하고 서버를 동작한 후, 3000번 포트로 접속하면 ‘Home’ 메세지가 뜹니다. &lt;code class=&quot;highlighter-rouge&quot;&gt;localhost:3000/hello&lt;/code&gt;로 접속하면 ‘Hello, World!’라는 메세지를 볼 수 있습니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;parameter&quot;&gt;Parameter&lt;/h2&gt;
+</description>
+        <pubDate>Sun, 12 May 2019 00:00:00 +0900</pubDate>
+        <link>https://devsoyoung.github.io//node.js/2019/05/12/koa-router.html</link>
+        <guid isPermaLink="true">https://devsoyoung.github.io//node.js/2019/05/12/koa-router.html</guid>
+        
+        
+        <category>Node.js</category>
+        
+      </item>
     
       <item>
         <title>[Node.js] Koa 프레임워크 시작하기</title>
@@ -1032,197 +1237,6 @@ d ㅋㅌ* minify(주석제거, 공백제거), obfuscation(변수명 변경), gzi
         
         
         <category>Review</category>
-        
-      </item>
-    
-      <item>
-        <title>플랫폼 UI 개발 전략의 모든 것</title>
-        <description>&lt;p&gt;2019년 4월 11일, 네이버 프론트엔드 테크콘서트에서 진행되었던 &lt;a href=&quot;https://www.slideshare.net/NaverEngineering/naver-tech-concertfe2019-ui&quot;&gt;플랫폼 UI 개발 전략의 모든 것&lt;/a&gt; 세미나를 듣고 내용을 정리한 글입니다.&lt;/p&gt;
-
-&lt;h2 id=&quot;플랫폼이란&quot;&gt;플랫폼이란&lt;/h2&gt;
-&lt;p&gt;공통의 활용 요소를 바탕으로 보완적인 파생 상품, 서비스를 개발할 수 있는 기반&lt;/p&gt;
-
-&lt;h2 id=&quot;기존-설계의-문제점&quot;&gt;기존 설계의 문제점&lt;/h2&gt;
-&lt;p&gt;(스마트 에디터 3.0 사례)&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;에디터를 사용하는 서비스마다 디자인/요구사항이 조금씩 다름&lt;/li&gt;
-  &lt;li&gt;컴포넌트 사이의 간격이 매우 다양함 : 이미지, 이미지 설명, 인용구 등&lt;/li&gt;
-  &lt;li&gt;UI 개발 전략이 없었음&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;플랫폼을-고려하지-않은-ui-개발&quot;&gt;플랫폼을 고려하지 않은 UI 개발&lt;/h4&gt;
-&lt;ul&gt;
-  &lt;li&gt;커스텀, 확장에 대한 고려가 없음 : 서비스 요구사항을 수용하기 어려움&lt;/li&gt;
-  &lt;li&gt;플랫폼 CSS, 서비스 CSS의 간섭이 발생, 우선 순위 관리 어려움&lt;/li&gt;
-  &lt;li&gt;에디터 UI 요소간 관계 파악이 어려워 버그, 사이드 이펙트 발생&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;(다소 다른 맥락이긴 하지만) 확장앱을 개발하면서 삽입하는 CSS, 기존 CSS 우선 순위 관리가 어려워서 공감되었습니다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;새로운-설계-방향&quot;&gt;새로운 설계 방향&lt;/h2&gt;
-&lt;p&gt;스마트에디터 원 : 플랫폼이 갖춰야 할 조건 고려&lt;/p&gt;
-
-&lt;h3 id=&quot;플랫폼-ui-설계에서-중요한-것&quot;&gt;플랫폼 UI 설계에서 중요한 것&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;UI 공통화 : 디자인 중심이 아닌 기능 중심&lt;/li&gt;
-  &lt;li&gt;조건과 상태에 따라 다른 스타일 적용&lt;/li&gt;
-  &lt;li&gt;각기 다른 요구사항을 쉽고 빠르게 적용&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;동적인-ui-스타일-로직&quot;&gt;동적인 UI 스타일 로직&lt;/h2&gt;
-&lt;p&gt;컴포넌트 간격과 연관된 UI 스펙 분석과 구현&lt;/p&gt;
-
-&lt;h3 id=&quot;스펙-분석&quot;&gt;스펙 분석&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;인접한 컴포넌트에 따라 간격이 달라질 수 있음
-    &lt;ul&gt;
-      &lt;li&gt;제목, 이미지, 이미지 위에 인용구가 있을 때, 이미지 위에 이미지가 있을 때 등&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;간격과 같은 높이의 숨겨진 UI(텍스트 추가 버튼)가 필요
-    &lt;ul&gt;
-      &lt;li&gt;공백 영역(숨겨진 영역)을 클릭하면 새로운 컨텐츠를 삽입할 수 있는 영역이 나옴&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;스마트 에디터 3.0을 많이 사용했었는데, 개발자분들의 노력을 직접 확인하니 새삼 감사했습니다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&quot;플랫폼-관점에서-설계-포인트&quot;&gt;플랫폼 관점에서 설계 포인트&lt;/h3&gt;
-&lt;p&gt;컴포넌트 사이 간격은 서비스별로 요구사항이 다를 수 있음&lt;/p&gt;
-
-&lt;h3 id=&quot;구현&quot;&gt;구현&lt;/h3&gt;
-&lt;p&gt;SCSS를 사용하여 설정 부분을 따로 빼내면, 서비스에 따라 쉽게 수정이 가능&lt;/p&gt;
-&lt;div class=&quot;language-scss highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;component-edge-button&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;spacing&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;base&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;30px&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;adjacent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;15px&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
-                &lt;span class=&quot;nb&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;20px&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
-            &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-&lt;span class=&quot;o&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;spacing-and-hidden-button-style&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;플랫폼-ui-설계-전략&quot;&gt;플랫폼 UI 설계 전략&lt;/h2&gt;
-&lt;h3 id=&quot;모듈화&quot;&gt;모듈화&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;디자인보다는 각 요소가 하는 기능에 집중하여 모듈화&lt;/li&gt;
-  &lt;li&gt;현재 요구사항에 맞게 최소한의 기능으로 모듈화하고, 확장 가능성은 배제
-    &lt;ul&gt;
-      &lt;li&gt;확장 가능성을 초기부터 고려하면 복잡해질 수 있음&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;같은 기능을 사용하는 요소는 동일한 HTML 구조를 사용&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;설정과-공통-코드&quot;&gt;설정과 공통 코드&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;간격, 색상, 서체, 폰트 사이즈 등 서비스 별 변경이 쉽도록 설정으로 관리&lt;/li&gt;
-  &lt;li&gt;반복적인 코드는 css pre-processor의 기능을 활용하여 구현&lt;/li&gt;
-  &lt;li&gt;연관된 UI, 수치는 반드시 공통으로 묶어 관계를 명확하게 함&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;플랫폼은-만능이-아님&quot;&gt;플랫폼은 만능이 아님&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;모든 요구사항을 플랫폼 공통 코드로 소화할 수 없음&lt;/li&gt;
-  &lt;li&gt;때로는 스펙 협의, 커뮤니케이션이 설계보다 중요할 수 있음&lt;/li&gt;
-  &lt;li&gt;플랫폼 공통 코드는 불변이 아니며, 지속적 리팩토링이 필요&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-        <pubDate>Fri, 12 Apr 2019 00:00:00 +0900</pubDate>
-        <link>https://devsoyoung.github.io//review/2019/04/12/naver-tech-concert-review-1.html</link>
-        <guid isPermaLink="true">https://devsoyoung.github.io//review/2019/04/12/naver-tech-concert-review-1.html</guid>
-        
-        
-        <category>Review</category>
-        
-      </item>
-    
-      <item>
-        <title>[JS] Timer 함수: setTimeout, setInterval</title>
-        <description>&lt;p&gt;Javascript의 Timer 관련 함수인 setTimeout, setInterval에 대해 정리한 글입니다.&lt;/p&gt;
-
-&lt;h2 id=&quot;타이머-함수의-활용&quot;&gt;타이머 함수의 활용&lt;/h2&gt;
-&lt;ol&gt;
-  &lt;li&gt;특정 함수나 기능을 바로 실행하지 않고, 약간의 &lt;strong&gt;시간이 지난 후에 실행&lt;/strong&gt;하고 싶을 때
-    &lt;ul&gt;
-      &lt;li&gt;어떤 정보를 표시한 후, 몇 초 뒤에 다른 페이지로 이동&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;특정 함수를 지속적으로 &lt;strong&gt;반복 실행&lt;/strong&gt;하고 싶을 때
-    &lt;ul&gt;
-      &lt;li&gt;특정 시간마다 화면을 갱신하기 위해서 서버에 새로운 정보를 요청&lt;/li&gt;
-      &lt;li&gt;남은 로그인 유지 시간 표시&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&quot;setinterval&quot;&gt;setInterval&lt;/h2&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;setInterval(fn, delay);
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;일정시간 &lt;strong&gt;마다&lt;/strong&gt; 함수를 실행&lt;/p&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;setInterval&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;				&lt;span class=&quot;c1&quot;&gt;// 1초마다 출력&lt;/span&gt;
-	&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'setInterval'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;setInterval&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'setInterval'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;		&lt;span class=&quot;c1&quot;&gt;// 1번만 출력&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;주의할 점은 &lt;strong&gt;함수 안의 내용을 반복적으로 수행&lt;/strong&gt;하는 것(함수 자체를 반복해주지 않음)&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;setInterval은 &lt;code class=&quot;highlighter-rouge&quot;&gt;timerId&lt;/code&gt;를 반환하므로, 이를 활용해서 clearInterval로 반복을 멈출 수 있음&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;timerId&lt;/code&gt;는 int 값&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;clearinterval로-반복-취소하기&quot;&gt;clearInterval로 반복 취소하기&lt;/h3&gt;
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;timerId&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;setInterval&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;c1&quot;&gt;// 반복할 내용&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;정지할&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;조건&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;clearInterval&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;timerId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;간혹 &lt;code class=&quot;highlighter-rouge&quot;&gt;clearInterval&lt;/code&gt;이 작동하지 않는 경우가 있는데, 그럴 때는 넘겨준 타이머 값을 콘솔에 찍어서 일치하는지 확인해보자.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;settimeout&quot;&gt;setTimeout&lt;/h2&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;setTimeout(fn, delay);
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;일정시간 &lt;strong&gt;후&lt;/strong&gt; 함수를 한 번만 실행&lt;/p&gt;
-
-&lt;h2 id=&quot;활용&quot;&gt;활용&lt;/h2&gt;
-&lt;h3 id=&quot;settimeout-setinterval-동시에-활용하기&quot;&gt;setTimeout, setInterval 동시에 활용하기&lt;/h3&gt;
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;intervalId&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;setInterval&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;c1&quot;&gt;// 수행할 내용&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-
-&lt;span class=&quot;nx&quot;&gt;setTimeout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;nx&quot;&gt;clearInterval&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;invervalId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;50000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;setInterval로 반복실행하다가 정해진 시간 후에 clearInterval을 실행(setTimeout)해서 반복을 중지시킴&lt;/p&gt;
-</description>
-        <pubDate>Tue, 26 Mar 2019 00:00:00 +0900</pubDate>
-        <link>https://devsoyoung.github.io//javascript/2019/03/26/js-timer.html</link>
-        <guid isPermaLink="true">https://devsoyoung.github.io//javascript/2019/03/26/js-timer.html</guid>
-        
-        
-        <category>Javascript</category>
         
       </item>
     

@@ -2,6 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     
     <url>
+        <loc>https://devsoyoung.github.io/react/2019/06/08/typescript-react-app.html</loc>
+    </url>
+    
+    <url>
+        <loc>https://devsoyoung.github.io/node.js/2019/05/12/koa-router.html</loc>
+    </url>
+    
+    <url>
         <loc>https://devsoyoung.github.io/node.js/2019/05/11/koa-api-tutorial.html</loc>
     </url>
     
@@ -82,6 +90,14 @@
     
     
     
+    
+    
+    
+    
+    
+    <url>
+        <loc>https://devsoyoung.github.io/page2/</loc>
+    </url>
     
     
     
