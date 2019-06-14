@@ -2,8 +2,9 @@
 
 ## Installation
 
-    git clone https://github.com/devSoyoung/devsoyoung.github.io.git
-    cd devsoyoung.github.io
+    git clone https://github.com/devSoyoung/jekyll-blog.git
+    cd jekyll-blog
+    
     gem install jekyll
     gem install pygments.rb
     
