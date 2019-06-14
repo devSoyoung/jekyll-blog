@@ -1,0 +1,156 @@
+---
+layout: post
+title:  "[React] Typescript로 react 프로젝트 생성하기"
+date:   2019-06-08
+categories: React
+---
+
+React 프로젝트를 생성하기 위해서는 webpack 설정 등 사전 작업이 필요합니다. 하지만 페이스북에서 만든 `create-react-app`을 사용하면 손쉽게 설정이 완료된 리액트 프로젝트를 생성할 수 있습니다.
+
+최근에는 많은 리액트 프로젝트들이 타입스크립트를 적용하고 있습니다. 타입스크립트는 자바스크립트에 타입을 강제하는 언어입니다. 타입스크립트로 개발을 한 후, 자바스크립트로 빌드하는 방식인데, 타입을 지정함으로써 얻는 다양한 이점으로 인해 활용이 늘어가는 추세입니다.
+
+저도 개인 프로젝트를 진행하면서, 타입스크립트를 적용해보려고 했습니다. 기존의 리액트 프로젝트를 생성하는 방식으로 하면 타입스크립트를 위한 설정을 추가적으로 해주어야 합니다. 초기에 프로젝트를 생성할 때, 옵션을 주면 손쉽게 타입스크립트가 적용된 프로젝트를 생성할 수 있습니다.
+
+## 프로젝트 생성하기
+먼저, npm으로 `create-react-app`을 설치합니다.
+
+```
+npm install -g create-react-app
+```
+
+> -g는 전역으로 설치하겠다는 의미입니다. 현재 위치에서만 사용하려면, -g 옵션을 제외하고 설치하면 됩니다.  
+
+이제, 타입스크립트가 적용된 프로젝트를 다음 명령어로 생성합니다.
+
+```
+create-react-app ts-app --scripts-version=react-scripts-ts
+```
+
+새로 생긴 `ts-app` 디렉토리에 타입스크립트 리액트 프로젝트가 만들어집니다.
+더 짧은 명령어도 있습니다.
+
+```
+create-react-app ts-app --typescript
+```
+
+두 방식에 어떤 차이가 있는지 궁금해서 각각의 방식으로 생성 후 만들어진 결과물을 비교해보았습니다.
+
+### —scripts-version 방식
+첫 번째 방식으로 생성한 경우, 아래와 같은 `package.json`이 생성됩니다.
+
+```
+{
+  "name": "typescript-react-app",
+  "version": "0.1.0",
+  "private": *true*,
+  "dependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-scripts-ts": "3.1.0"
+  },
+  "scripts": {
+    "start": "react-scripts-ts start",
+    "build": "react-scripts-ts build",
+    "test": "react-scripts-ts test --env=jsdom",
+    "eject": "react-scripts-ts eject"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.13",
+    "@types/node": "^12.0.7",
+    "@types/react": "^16.8.19",
+    "@types/react-dom": "^16.8.4",
+    "typescript": "^3.5.1"
+  }
+}
+```
+
+typescript와 관련된 라이브러리가 `devDependencies`에 포함됩니다. 그리고, `react-scripts` 대신 옵션으로 준,  `react-scripts-ts`가 설치됩니다.
+
+프로젝트에 tslint 설정파일과 `tsconfig.json`이 생성되고, 자바스크립트로 생성한 프로젝트의 `package.json`에 있는 `browserslist` 관련 설정은 없습니다.
+
+### —typescript 방식
+typescript 옵션을 준 경우, 아래와 같은 `package.json`이 생성됩니다.
+
+```
+{
+  "name": "ts-app",
+  "version": "0.1.0",
+  "private": *true*,
+  "dependencies": {
+    "@types/jest": "24.0.13",
+    "@types/node": "12.0.7",
+    "@types/react": "16.8.19",
+    "@types/react-dom": "16.8.4",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-scripts": "3.0.1",
+    "typescript": "3.5.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
+```
+
+자바스크립트로 생성한 프로젝트에 타입스크립트 관련 모듈이 추가된 형태입니다. `devDependencies` 대신 `dependencies`에 추가됩니다. tslint 설정파일도 생성되지 않습니다.
+
+## 자바스크립트로 생성한 리액트 프로젝트
+아무런 옵션 없이 프로젝트를 생성했을 때에는 다음과 같은 `package.json`이 생성됩니다.
+
+```
+{
+  "name": "js-app",
+  "version": "0.1.0",
+  "private": *true*,
+  "dependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-scripts": "3.0.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
+```
+
+`—typescript` 방식과 비슷합니다.
+
+
+## 글을 마무리하며
+두 방식에 큰 차이가 없어 편안한 방식이나 원하는 결과물을 내는 방식을 선택해서 사용하면 될 것 같습니다. 이제 타입스크립트를 적용한 프로젝트를 만들어보며 타입스크립트의 장점을 몸소 느껴봐야겠습니다 :)

@@ -1,0 +1,43 @@
+<p>HTML 파일 한글 인코딩이 깨질 때, 인코딩 방식을 지정해주는 메타태그에 대해 정리한 글입니다.</p>
+
+<h2 id="html-인코딩">HTML 인코딩</h2>
+<p>인코딩을 구글에 검색하면 다음과 같은 설명을 확인할 수 있다.</p>
+
+<blockquote>
+  <p>정보의 형태나 형식을 표준화, 보안, 처리 속도 향상, 저장 공간 절약 등을 위해서 다른 형태나 형식으로 변환하는 처리 혹은 그 처리 방식을 말한다. 즉, 컴퓨터가 이해할 수 있는 형식으로 바꾸어주는 것을 의미한다.</p>
+</blockquote>
+
+<p>우리가 생성하는 파일도 다양한 방식으로 인코딩을 하는데, HTML 파일의 인코딩 방식과 브라우저의 인코딩 방식이 일치하지 않을 경우 문서의 글자가 깨져보이는 현상이 발생한다.</p>
+
+<p>우리나라에서 사용하는 한글의 경우에도 그런 상황이 종종 발생한다. 이런 문제를 해결해주기 위해서, HTML 파일에 메타태그를 이용해서 파일의 인코딩 방식을 브라우저에게 알려주어야 한다.</p>
+
+<h2 id="한글-인코딩-방식">한글 인코딩 방식</h2>
+
+<p>한글의 대표적인 인코딩 방식에는 <code class="highlighter-rouge">euc-kr</code>과 <code class="highlighter-rouge">utf-8</code>이 있다.</p>
+
+<h3 id="euc-kr">euc-kr</h3>
+<p>1byte 길이의 <code class="highlighter-rouge">ASCII</code> 인코딩 방식의 길이를 늘려 한글을 사용할 수 있도록 만든 2byte 길이의 국가 언어 코드이다. 이름에서 알 수 있듯이 한글만 사용이 가능하기 때문에, 다른 언어를 사용하는 환경에서는 정상 동작하지 않는다.</p>
+
+<h3 id="utf-8">utf-8</h3>
+<p><code class="highlighter-rouge">euc-kr</code>의 다른 언어를 사용하는 환경에서의 동작문제를 해결할 수 있는 인코딩 방식이다. 3byte로 길이는 1byte 길지만, 다양한 언어를 지원하기 때문에 범용성이 좋다.</p>
+
+<p>요즘에는 용량 문제보다 표준화 및 글로벌 환경을 고려하기 때문에 <code class="highlighter-rouge">utf-8</code>을 선호한다.</p>
+
+<h2 id="meta-태그로-인코딩-방식-설정하기">meta 태그로 인코딩 방식 설정하기</h2>
+<p>HTML 문서의 <code class="highlighter-rouge">&lt;head&gt;</code> 태그 내에 아래와 같은 <code class="highlighter-rouge">&lt;meta&gt;</code> 태그를 삽입하면 된다.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;html&gt;</span>
+    <span class="nt">&lt;head&gt;</span>
+        <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"utf-8"</span><span class="nt">&gt;</span>    
+    <span class="nt">&lt;/head&gt;</span>
+    <span class="nt">&lt;body&gt;</span>
+        ...
+    <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>HTML5 이전에는 <code class="highlighter-rouge">&lt;meta http-equiv="content-type" content="text/html; charset=UTF-8"&gt;</code>와 같이 복잡하게 적어야 했지만, 이제는 저렇게 간단하게 적을 수 있다 :)</p>
+</blockquote>
+
+<p>이렇게 설정을 해주었는데도 HTML 문서가 여전히 깨진다면 파일 저장할 때 인코딩 방식을 확인해보자. HTML 문서에는 브라우저에게 <code class="highlighter-rouge">utf-8</code>로 인코딩하라고 알려주고 나는 다른 방식으로 인코딩하고 있었다면.. :(</p>

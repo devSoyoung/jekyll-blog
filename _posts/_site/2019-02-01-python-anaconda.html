@@ -1,0 +1,39 @@
+<p>Python 배포판 아나콘다의 설치 방법과 자주 사용하는 명령어를 정리한 글입니다.</p>
+
+<h2 id="아나콘다란-무엇인가">아나콘다란 무엇인가</h2>
+<p>Continuum Analytics에서 제작한 파이썬 배포판이다. 수학, 과학 등과 관련된 다양한 파이썬 패키지를 포함하고 있으며, 상업용으로도 무료 사용이 가능하다. <strong>패키지 의존성을 관리</strong>해주기 때문에, 가상환경에 따라 독립적으로 패키지 관리를 쉽게 할 수 있다는 장점을 가지고 있다.</p>
+
+<blockquote>
+  <p>현재 아나콘다 홈페이지에는 최신 파이썬 버전인 python 3.7 버전의 설치 파일을 제공하고 있다. 다른 버전의 파이썬을 깔고 싶다면, 설치한 후에 다음 명령어를 실행하면 된다. <a href="http://docs.anaconda.com/anaconda/user-guide/faq/#how-do-i-get-the-latest-anaconda-with-python-3-5">[공식홈페이지 링크]</a></p>
+</blockquote>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>conda install python={version}
+</code></pre></div></div>
+
+<h2 id="새-가상환경-생성-w-anaconda">새 가상환경 생성 (w. anaconda)</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>conda create -n "{venv_name}" python=3 anaconda
+</code></pre></div></div>
+
+<p>anaconda를 같이 설치해주어야 jupyter notebook을 사용할 때, 가상환경의 파이썬을 사용할 수 있다.</p>
+
+<h3 id="가상환경-삭제">가상환경 삭제</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>conda remote -n "{venv_name}" --all 
+</code></pre></div></div>
+
+<h3 id="가상환경-활성화">가상환경 활성화</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>source activate {venv_name}
+</code></pre></div></div>
+
+<h3 id="가상환경-비활성화">가상환경 비활성화</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>source deactivate
+</code></pre></div></div>
+
+<h3 id="가상환경-목록-확인">가상환경 목록 확인</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>conda info --envs
+</code></pre></div></div>
+
+<h3 id="생성한-가상환경에-패키지-추가-설치">생성한 가상환경에 패키지 추가 설치</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>conda install -n "{venv_name}" {packages..}
+</code></pre></div></div>
+

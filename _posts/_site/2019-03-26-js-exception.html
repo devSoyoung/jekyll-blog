@@ -1,0 +1,32 @@
+<p>Javascript의 예외처리 방법에 대해 정리한 글입니다.</p>
+
+<h2 id="예외처리의-필요성">예외처리의 필요성</h2>
+<p>예상치 못하게 발생한 에러를 잘 처리해야 프로그램 전체가 멈추지 않고 동작할 수 있음</p>
+
+<h2 id="try-catch-finally">Try, Catch, Finally</h2>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span> <span class="p">{</span>
+	<span class="c1">// 실행하고 싶은 코드</span>
+	<span class="c1">// 여기서 실행하다가 에러가 발생하면 catch 블록으로 이동</span>
+	<span class="k">throw</span> <span class="p">{</span><span class="err">전달할</span> <span class="nx">e</span> <span class="err">값</span><span class="p">};</span>		<span class="c1">// catch 블록으로 이동</span>
+<span class="p">}</span>
+<span class="k">catch</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+	<span class="c1">// 에러가 발생했을 때,</span>
+	<span class="c1">// 에러를 파라미터로 받아서 처리함</span>
+<span class="p">}</span>
+<span class="k">finally</span> <span class="p">{</span>
+	<span class="c1">// 가장 마지막에 항상 실행되어야 할 코드</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<ul>
+  <li>try는 반드시 있어야 함</li>
+  <li>catch나 finally는 둘 중 하나만 있어도 실행 가능</li>
+  <li><code class="highlighter-rouge">throw</code> : 에러를 발생시키는 명령어</li>
+</ul>
+
+<h3 id="에러-처리-과정">에러 처리 과정</h3>
+<p>throw가 발생하면 catch 구문을 찾아서 이동</p>
+<ul>
+  <li>현재 블록에 catch나 finally가 없는 경우 상위 블록이나 호출한 함수로 이동</li>
+  <li>catch가 존재하지 않는 경우, finally를 실행하고, catch 될 수 있는 구문을 찾아서 이동</li>
+  <li>catch 구문에서 에러가 처리되고, 이후 코드를 실행</li>
+</ul>

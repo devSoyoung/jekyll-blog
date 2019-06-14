@@ -1,0 +1,16 @@
+name: 큐트리 개발 블로그
+description: 프론트엔드 개발과 귀여운 것에 관심이 많습니다.
+meta_description: "큐트리 개발 관련 블로그"
+
+markdown: kramdown
+highlighter: rouge
+logo: false
+paginate: 15
+baseurl: /
+domain_name: 'https://devsoyoung.github.io'
+google_analytics: 'UA-XXXXXXXX-X'
+gems: [jekyll-paginate]
+
+# Details for the RSS feed generator
+url:            'https://devsoyoung.github.io'
+author:         'CUTELEE'

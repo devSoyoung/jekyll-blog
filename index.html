@@ -1,34 +1,24 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+---
+layout: default
+title: Home
+cover: false
+about: 'about.html'
+---
 
-    <title>큐트리 개발 블로그 - 프론트엔드 개발과 귀여운 것에 관심이 많습니다.</title>
-    <meta name="description" content="큐트리 개발 관련 블로그" />
-
-    <meta name="HandheldFriendly" content="True" />
-    <meta name="MobileOptimized" content="320" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
-    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
-    <!-- Customisation  -->
-    <link rel="stylesheet" type="text/css" href="/assets/css/main.css" />
-
-</head>
-<body class="home-template">
-
-    <header class="main-header no-cover">
+<header class="main-header {% if page.cover %}" style="background-image: url({{ page.cover }}) {%else%}no-cover{% endif %}">
     <nav class="main-nav overlay clearfix">
-            
-        <a class="aboutme-button" href="/about.html">About me</a>
+            {% if page.logo %}
+                <a class="blog-logo" href="{{ site.baseurl }}">
+                    <img src="{{ page.logo }}" alt="Blog Logo" />
+                </a>
+            {% endif %}
+        <a class="aboutme-button" href="{{ site.baseurl }}{{ page.about }}">About me</a>
     </nav>
     <div class="vertical">
         <div class="main-header-content inner">
-            <h1 class="page-title">큐트리 개발 블로그</h1>
+            <h1 class="page-title">{{ site.name }}</h1>
             <h2 class="page-description">
-                 프론트엔드 개발과 귀여운 것에 관심이 많습니다. 
+                {% if site.description %} {{ site.description }} {% endif %}
             </h2>
         </div>
     </div>
@@ -40,429 +30,34 @@
 
 
     <div class="extra-pagination inner">
-        <nav class="pagination" role="pagination">
-    
-    <span class="page-number"> Page 1 of 2 </span>
-     
-        <a class="older-posts" href="/page2/" title="Next Page">Older Posts &raquo;</a>
-     
-</nav>
+        {% include pagination.html %}
     </div>
 
-    
+    {% for post in paginator.posts %}
 
     <article class="post">
         <header class="post-header">
-            <h2 class="post-title"><a href="/react/2019/06/08/typescript-react-app.html">[React] Typescript로 react 프로젝트 생성하기</a></h2>
+            <h2 class="post-title"><a href="{{ post.url }}">{{ post.title }}</a></h2>
         </header>
         <section class="post-excerpt">
-            <p>React 프로젝트를 생성하기 위해서는 webpack 설정 등 사전 작업이 필요합니다. 하지만 페이스북에서 만든 <code class="highlighter-rouge">create-react-app</code>을 사용하면 손쉽게 설정이 완료된 리액트 프로젝트를 생성할 수 있습니다.</p>
-
- <a class="read-more" href="/react/2019/06/08/typescript-react-app.html">&raquo;</a>
+            {{ post.excerpt }} <a class="read-more" href="{{ post.url }}">&raquo;</a>
         </section>
         <footer class="post-meta">
-            
+            {% if site.author %}
                 <img class="author-thumb" src="/assets/images/profile.png" alt="Author's profile picture" nopin="nopin" />
-                CUTELEE
-            
-             
-                on React 
-            
-            <time class="post-date" datetime="2019-06-08">
-                08 Jun 2019
+                {{ site.author }}
+            {% endif %}
+            {% if post.categories.size > 0 %} 
+                {{ post.categories | array_to_sentence_string | prepend: 'on ' }} 
+            {% endif %}
+            <time class="post-date" datetime="{{ post.date | date:"%Y-%m-%d" }}">
+                {{ post.date | date_to_string }}
             </time> 
         </footer>
     </article>
 
-    
+    {% endfor %}
 
-    <article class="post">
-        <header class="post-header">
-            <h2 class="post-title"><a href="/node.js/2019/05/12/koa-router.html">[Node.js] koa-router 사용하기</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>지난 글 <a href="https://devsoyoung.github.io/node.js/2019/05/11/koa-api-tutorial.html">Koa 프레임워크 시작하기</a>에 이어서 koa-router에 대해 정리한 글입니다.</p>
-
- <a class="read-more" href="/node.js/2019/05/12/koa-router.html">&raquo;</a>
-        </section>
-        <footer class="post-meta">
-            
-                <img class="author-thumb" src="/assets/images/profile.png" alt="Author's profile picture" nopin="nopin" />
-                CUTELEE
-            
-             
-                on Node.js 
-            
-            <time class="post-date" datetime="2019-05-12">
-                12 May 2019
-            </time> 
-        </footer>
-    </article>
-
-    
-
-    <article class="post">
-        <header class="post-header">
-            <h2 class="post-title"><a href="/node.js/2019/05/11/koa-api-tutorial.html">[Node.js] Koa 프레임워크 시작하기</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>Node.js의 대표적인 프레임워크 중 하나인 Koa에 대해서 간단하게 정리한 글입니다.</p>
-
- <a class="read-more" href="/node.js/2019/05/11/koa-api-tutorial.html">&raquo;</a>
-        </section>
-        <footer class="post-meta">
-            
-                <img class="author-thumb" src="/assets/images/profile.png" alt="Author's profile picture" nopin="nopin" />
-                CUTELEE
-            
-             
-                on Node.js 
-            
-            <time class="post-date" datetime="2019-05-11">
-                11 May 2019
-            </time> 
-        </footer>
-    </article>
-
-    
-
-    <article class="post">
-        <header class="post-header">
-            <h2 class="post-title"><a href="/html/2019/05/07/shadow-dom.html">[HTML] Shadow DOM 개념, 사용방법</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>Shadow DOM의 개념과 사용 방법에 대해 정리한 글입니다.</p>
-
- <a class="read-more" href="/html/2019/05/07/shadow-dom.html">&raquo;</a>
-        </section>
-        <footer class="post-meta">
-            
-                <img class="author-thumb" src="/assets/images/profile.png" alt="Author's profile picture" nopin="nopin" />
-                CUTELEE
-            
-             
-                on HTML 
-            
-            <time class="post-date" datetime="2019-05-07">
-                07 May 2019
-            </time> 
-        </footer>
-    </article>
-
-    
-
-    <article class="post">
-        <header class="post-header">
-            <h2 class="post-title"><a href="/etc/2019/05/06/markdown-image-tag.html">[MARKDOWN] 마크다운 이미지 크기, 정렬 등</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>github에서 마크다운을 작성할 때, 이미지의 크기를 조정하는 방법과 정렬하는 방법을 정리한 글입니다.</p>
-
- <a class="read-more" href="/etc/2019/05/06/markdown-image-tag.html">&raquo;</a>
-        </section>
-        <footer class="post-meta">
-            
-                <img class="author-thumb" src="/assets/images/profile.png" alt="Author's profile picture" nopin="nopin" />
-                CUTELEE
-            
-             
-                on ETC 
-            
-            <time class="post-date" datetime="2019-05-06">
-                06 May 2019
-            </time> 
-        </footer>
-    </article>
-
-    
-
-    <article class="post">
-        <header class="post-header">
-            <h2 class="post-title"><a href="/html/2019/05/06/html-encoding.html">[HTML] 인코딩 설정 메타태그</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>HTML 파일 한글 인코딩이 깨질 때, 인코딩 방식을 지정해주는 메타태그에 대해 정리한 글입니다.</p>
-
- <a class="read-more" href="/html/2019/05/06/html-encoding.html">&raquo;</a>
-        </section>
-        <footer class="post-meta">
-            
-                <img class="author-thumb" src="/assets/images/profile.png" alt="Author's profile picture" nopin="nopin" />
-                CUTELEE
-            
-             
-                on HTML 
-            
-            <time class="post-date" datetime="2019-05-06">
-                06 May 2019
-            </time> 
-        </footer>
-    </article>
-
-    
-
-    <article class="post">
-        <header class="post-header">
-            <h2 class="post-title"><a href="/fe/2019/05/04/webpack-introduce.html">Webpack 초간단 정리</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>요즘 프론트엔드 개발을 하면 반드시 접하게 되는 웹팩. 왜 써야하는지, 어떻게 프로젝트에 적용할 수 있는지에 대한 내용을 간단하게 정리해보려고 합니다.</p>
-
- <a class="read-more" href="/fe/2019/05/04/webpack-introduce.html">&raquo;</a>
-        </section>
-        <footer class="post-meta">
-            
-                <img class="author-thumb" src="/assets/images/profile.png" alt="Author's profile picture" nopin="nopin" />
-                CUTELEE
-            
-             
-                on FE 
-            
-            <time class="post-date" datetime="2019-05-04">
-                04 May 2019
-            </time> 
-        </footer>
-    </article>
-
-    
-
-    <article class="post">
-        <header class="post-header">
-            <h2 class="post-title"><a href="/review/2019/04/13/naver-tech-concert-review-4.html">오늘부터 나도 FE 성능분석가</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>2019년 4월 11일, 네이버 프론트엔드 테크콘서트에서 진행되었던 <a href="https://www.slideshare.net/NaverEngineering/naver-tech-concertfe2019-fe">오늘부터 나도 FE 성능분석가</a> 세미나를 듣고 내용을 정리한 글입니다.</p>
-
- <a class="read-more" href="/review/2019/04/13/naver-tech-concert-review-4.html">&raquo;</a>
-        </section>
-        <footer class="post-meta">
-            
-                <img class="author-thumb" src="/assets/images/profile.png" alt="Author's profile picture" nopin="nopin" />
-                CUTELEE
-            
-             
-                on Review 
-            
-            <time class="post-date" datetime="2019-04-13">
-                13 Apr 2019
-            </time> 
-        </footer>
-    </article>
-
-    
-
-    <article class="post">
-        <header class="post-header">
-            <h2 class="post-title"><a href="/review/2019/04/12/naver-tech-concert-review-3.html">빠르게 훑어보는 웹 개발 트렌드</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>2019년 4월 11일, 네이버 프론트엔드 테크콘서트에서 진행되었던 <a href="https://www.slideshare.net/NaverEngineering/naver-tech-concertfe2019">빠르게 훑어보는 웹 개발 트렌드</a> 세미나를 듣고 내용을 정리한 글입니다.</p>
-
- <a class="read-more" href="/review/2019/04/12/naver-tech-concert-review-3.html">&raquo;</a>
-        </section>
-        <footer class="post-meta">
-            
-                <img class="author-thumb" src="/assets/images/profile.png" alt="Author's profile picture" nopin="nopin" />
-                CUTELEE
-            
-             
-                on Review 
-            
-            <time class="post-date" datetime="2019-04-12">
-                12 Apr 2019
-            </time> 
-        </footer>
-    </article>
-
-    
-
-    <article class="post">
-        <header class="post-header">
-            <h2 class="post-title"><a href="/review/2019/04/12/naver-tech-concert-review-2.html">데이터 상태 관리, 그것을 알려주마!</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>2019년 4월 11일, 네이버 프론트엔드 테크콘서트에서 진행되었던 <a href="https://www.slideshare.net/NaverEngineering/naver-tech-concertfe2019-140432157">데이터 상태 관리, 그것을 알려주마!</a> 세미나를 듣고 내용을 정리한 글입니다.</p>
-
- <a class="read-more" href="/review/2019/04/12/naver-tech-concert-review-2.html">&raquo;</a>
-        </section>
-        <footer class="post-meta">
-            
-                <img class="author-thumb" src="/assets/images/profile.png" alt="Author's profile picture" nopin="nopin" />
-                CUTELEE
-            
-             
-                on Review 
-            
-            <time class="post-date" datetime="2019-04-12">
-                12 Apr 2019
-            </time> 
-        </footer>
-    </article>
-
-    
-
-    <article class="post">
-        <header class="post-header">
-            <h2 class="post-title"><a href="/review/2019/04/12/naver-tech-concert-review-1.html">플랫폼 UI 개발 전략의 모든 것</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>2019년 4월 11일, 네이버 프론트엔드 테크콘서트에서 진행되었던 <a href="https://www.slideshare.net/NaverEngineering/naver-tech-concertfe2019-ui">플랫폼 UI 개발 전략의 모든 것</a> 세미나를 듣고 내용을 정리한 글입니다.</p>
-
- <a class="read-more" href="/review/2019/04/12/naver-tech-concert-review-1.html">&raquo;</a>
-        </section>
-        <footer class="post-meta">
-            
-                <img class="author-thumb" src="/assets/images/profile.png" alt="Author's profile picture" nopin="nopin" />
-                CUTELEE
-            
-             
-                on Review 
-            
-            <time class="post-date" datetime="2019-04-12">
-                12 Apr 2019
-            </time> 
-        </footer>
-    </article>
-
-    
-
-    <article class="post">
-        <header class="post-header">
-            <h2 class="post-title"><a href="/javascript/2019/03/26/js-timer.html">[JS] Timer 함수: setTimeout, setInterval</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>Javascript의 Timer 관련 함수인 setTimeout, setInterval에 대해 정리한 글입니다.</p>
-
- <a class="read-more" href="/javascript/2019/03/26/js-timer.html">&raquo;</a>
-        </section>
-        <footer class="post-meta">
-            
-                <img class="author-thumb" src="/assets/images/profile.png" alt="Author's profile picture" nopin="nopin" />
-                CUTELEE
-            
-             
-                on Javascript 
-            
-            <time class="post-date" datetime="2019-03-26">
-                26 Mar 2019
-            </time> 
-        </footer>
-    </article>
-
-    
-
-    <article class="post">
-        <header class="post-header">
-            <h2 class="post-title"><a href="/javascript/2019/03/26/js-htmlcollection-nodelist.html">[JS] HTMLCollection과 NodeList 차이점</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>Javascript의 Element Collection인 HTMLCollection과 NodeList의 공통점, 차이점을 정리한 글입니다.</p>
-
- <a class="read-more" href="/javascript/2019/03/26/js-htmlcollection-nodelist.html">&raquo;</a>
-        </section>
-        <footer class="post-meta">
-            
-                <img class="author-thumb" src="/assets/images/profile.png" alt="Author's profile picture" nopin="nopin" />
-                CUTELEE
-            
-             
-                on Javascript 
-            
-            <time class="post-date" datetime="2019-03-26">
-                26 Mar 2019
-            </time> 
-        </footer>
-    </article>
-
-    
-
-    <article class="post">
-        <header class="post-header">
-            <h2 class="post-title"><a href="/javascript/2019/03/26/js-exception.html">[JS] Javascript 예외처리: try, catch, finally</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>Javascript의 예외처리 방법에 대해 정리한 글입니다.</p>
-
- <a class="read-more" href="/javascript/2019/03/26/js-exception.html">&raquo;</a>
-        </section>
-        <footer class="post-meta">
-            
-                <img class="author-thumb" src="/assets/images/profile.png" alt="Author's profile picture" nopin="nopin" />
-                CUTELEE
-            
-             
-                on Javascript 
-            
-            <time class="post-date" datetime="2019-03-26">
-                26 Mar 2019
-            </time> 
-        </footer>
-    </article>
-
-    
-
-    <article class="post">
-        <header class="post-header">
-            <h2 class="post-title"><a href="/javascript/2019/03/26/js-event-basic.html">[JS] 이벤트 등록: addEventListener()</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>Javascript에서 가장 많이 수행하는 event 등록, event 관련 메소드에 대해 정리한 글입니다.</p>
-
- <a class="read-more" href="/javascript/2019/03/26/js-event-basic.html">&raquo;</a>
-        </section>
-        <footer class="post-meta">
-            
-                <img class="author-thumb" src="/assets/images/profile.png" alt="Author's profile picture" nopin="nopin" />
-                CUTELEE
-            
-             
-                on Javascript 
-            
-            <time class="post-date" datetime="2019-03-26">
-                26 Mar 2019
-            </time> 
-        </footer>
-    </article>
-
-    
-
-    <nav class="pagination" role="pagination">
-    
-    <span class="page-number"> Page 1 of 2 </span>
-     
-        <a class="older-posts" href="/page2/" title="Next Page">Older Posts &raquo;</a>
-     
-</nav>
+    {% include pagination.html %}
 
 </main>
-
-    <footer class="site-footer clearfix">
-      <section class="copyright">
-        <a href="/">큐트리 개발 블로그</a> &copy; 
-              2019 &bull; All rights reserved.
-      </section>
-      <section class="poweredby">Made with Jekyll using 
-        <a href="http://github.com/rosario/kasper">Kasper theme</a>
-      </section>
-    </footer>
-    
-    <script type="text/javascript" src="/assets/js/jquery-1.11.1.min.js"></script>
-    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
-    <script type="text/javascript" src="/assets/js/index.js"></script>
-
-    <!-- Google Analytics Tracking code -->
-    <script type="text/javascript">
-
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
-      _gaq.push(['_trackPageview']);
-
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-
-    </script>   
-</body>
-</html>

@@ -1,0 +1,87 @@
+---
+layout: post
+title:  "데이터 상태 관리, 그것을 알려주마!"
+date:   2019-04-12
+categories: Review
+---
+
+2019년 4월 11일, 네이버 프론트엔드 테크콘서트에서 진행되었던 [데이터 상태 관리, 그것을 알려주마!](https://www.slideshare.net/NaverEngineering/naver-tech-concertfe2019-140432157) 세미나를 듣고 내용을 정리한 글입니다.
+
+## FE에서의 상태관리
+* 상태는 각 뷰에서, 때로는 뷰와 상관없이 필요에 의해서 실시간, 비동기로 계속 변화
+* 상태가 언제, 어떻게, 왜 변화했는지 제어할 수 없는 상황에 이르게 됨
+
+## jQuery와 상태관리
+
+* 마크업(HTML)에 jQuery를 바른다 : HTML이 메인
+* **메인에 상태를 저장** : HTML 태그 내에 상태를 저장함
+
+![image](https://user-images.githubusercontent.com/42922453/55947890-53a3d980-5c8a-11e9-9334-4ce0f29201f6.png)
+
+* 여러 element에 저장된 정보를 조합해서 동작을 수행하고 싶을 때
+		1. 필요한 element를 선택해서 상태를 가져옴
+		2. 상태를 가져와서 작업을 한 후 동작(ajax 요청)을 수행
+* **문제** : 동작을 수행하는 과정에서 가져온 상태가 변경될 수 있음
+
+### jQuery 상태 관리 정리
+* jQuery 개발은 DOM에 jQuery로 동작을 입히는 것
+* DOM이 베이스(메인)
+* 각 element에 상태를 저장
+* 서로 다른 element의 상태변화 추적이 어려움
+
+## AngularJS 상태관리
+출력할 데이터에 초점을 맞추어 작업이 수행되며, 데이터 값이 변경되면 출력도 자동적으로 수행
+
+### AngularJS의 기본 개념
+* **모듈**이라는 개념을 사용(컴포넌트와 비슷한 개념)
+* **컨트롤러**라는 지시자를 이용하여 마크업 상에 영역을 생성
+
+```html
+<div ng-controller="MyController">
+    Your name: <input type="text" ng-model="username"/>
+    <button ng-click="sayHello()">greet</button>
+    {{ greeting }}
+</div>
+```
+```js
+angular.module('scopeExample', [])
+.controller('MyController', ['$scope', function($scope) {
+    $scope.username = 'world';
+    $scope.sayHello = function() {
+		$scope.greeting = 'Hello' + $scope.username + '!';
+    };
+```
+
+* DOM에 접근하여 값(상태)를 변경시키는 코드가 없어도 뷰가 변경됨
+* 개발자는 `$scope.greeting` 값만 변경하면 됨
+
+### AngularJS의 구조
+* 서비스, 컨트롤러, 뷰로 구성
+* 각 컨트롤러는 로직과 state를 가지며, 공통 로직과 state는 서비스에서 관리
+* 컨트롤러의 정보를 통해 뷰를 그림
+* **문제** : 상태(데이터)를 언제, 왜, 어떻게 변했는지 알기 어려움
+
+## Redux의 상태관리
+
+![image](https://user-images.githubusercontent.com/42922453/55971839-376d6000-5cbd-11e9-8406-ad2ad9219087.png)
+
+상태관리를 컴포넌트 바깥에서 하고, 컴포넌트들은 스토어를 구독해서 변화를 감지
+
+- FLUX
+- CQRS
+- Event Sourcing
+
+### Redux의 문제점
+* 많은 보일러 플레이트 : 초기에 여러 가지 설정이 필요
+* 어렵고 (경우에 따라서) 과한 기술이 될 수 있음
+* **결론** : 상황에 맞게, 적절하게 사용하자
+
+***
+## 정리
+* FE 앱은 상태(데이터)들의 유기체
+* **상태 관리 이슈** : DOM 변화, 비동기 동작 간의 개념 충돌 등
+* 상태 관리에 대한 다양한 접근법이 제시되었고, DOM 중심에서 상태 중심으로 관점이 옮겨지는 추세
+* 관점의 변화가 필요하고, 이에 따른 개발 방식도 변화 필요
+* 현재는 레거시(jQuery)와 Angular, Redux 등이 혼재하기 때문에 다 아는 것이 좋음
+* 프로젝트에 따라 최적의 기술이 다를 수 있으므로 상황을 잘 고려하는 것이 중요
+* 어떤 상태 관리 방법을 사용하는가에 따라 전체 구조를 결정하므로 프로젝트 시작 전에 고려
