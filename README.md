@@ -1,4 +1,4 @@
-# Dev Blog
+# Jekyll Blog
 
 ## Installation
 
